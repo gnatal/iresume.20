@@ -16,7 +16,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 // import Loading from "../../Components/Basics/Loading";
 import * as yup from "yup";
 // import { showMessage } from "react-native-flash-message";
-// import PolicyLink from "../../Components/Basics/PolicyLink";
+import PolicyLink from "../../Components/Basics/PolicyLink";
 
 const loginSchema = yup.object().shape({
   email: yup.string().email().required(),
@@ -172,7 +172,7 @@ function Login({ navigation }: any) {
             {/* <Text className="text-[#1976D2] text-sm text-center" onPress={() => { navigation.navigate("Password Recovery"); }}>
               Recuperar senha
             </Text> */}
-            {/* <PolicyLink /> */}
+            <PolicyLink />
           </View>
         </View>
       </View>
