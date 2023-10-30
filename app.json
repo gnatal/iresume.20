@@ -2,9 +2,9 @@
   "expo": {
     "name": "myresume",
     "slug": "myresume",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/playstore.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
