@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 // import { ProfileTabNavigator } from './Components/Navigation/ProfileTab';
 import { AuthStackNavigator } from './Components/Navigation/AuthStack';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from './Screens/Profile/Home';
+import { ProfileTabNavigator } from './Components/Navigation/ProfileTab';
 // import EditAcademicInfo from './Screens/Edit/EditAcademicInfo';
 // import EditProfessionalInfo from './Screens/Edit/EditProfessionalInfo';
 // import EditLanguageInfo from './Screens/Edit/EditLanguageInfo';
@@ -50,7 +50,7 @@ const AppStackNavigator = () => {
   return (
     <AppStack.Navigator screenOptions={{ headerShown: false }}>
       <AppStack.Screen name="AuthStack" component={AuthStackNavigator} />
-      <AppStack.Screen name="ProfileTab" component={Home} />
+      <AppStack.Screen name="ProfileTab" component={ProfileTabNavigator} />
 
     </AppStack.Navigator>
   );
