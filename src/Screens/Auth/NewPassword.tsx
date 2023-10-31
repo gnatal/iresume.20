@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, View, TouchableOpacity, Image, Platform, TextInput, ScrollView } from "react-native";
-// import { TextInput } from "react-native-gesture-handler";
 
 function NewPassword({ navigation }: any) {
   return (
