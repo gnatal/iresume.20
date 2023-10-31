@@ -1,11 +1,14 @@
-import { View } from 'react-native';
-import RecoverPassword from './src/Screens/Auth/RecoverPassword';
-
+import "react-native-gesture-handler";
+import { View } from "react-native";
+import AppContainer from "./src/AppContainer";
+import { Provider } from "react-redux";
+import store from "./src/store";
 export default function App() {
   return (
-    <View className="flex-1">
-      <RecoverPassword />
-    </View>
+    <Provider store={store}>
+      <View className="flex-1">
+        <AppContainer />
+      </View>
+    </Provider>
   );
 }
-
