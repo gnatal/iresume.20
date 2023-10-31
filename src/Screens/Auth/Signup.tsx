@@ -7,12 +7,12 @@ import {
   Image,
   Platform,
 } from "react-native";
-// import { useDispatch } from "react-redux";
-// import { updateUserLogin } from "../../store/loginReducer";
-// import { sendSignupRequest } from "../../Services/sendSignupRequest";
+import { useDispatch } from "react-redux";
+import { updateUserLogin } from "../../store/loginReducer"; 
+import { sendSignupRequest } from "../../Services/sendSignupRequest";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import Loading from "../../Components/Basics/Loading";
+import Loading from "../../Components/Basics/Loading";
 import * as yup from "yup";
 import { KeyboardAvoidingView } from "react-native";
 import PolicyLink from "../../Components/Basics/PolicyLink";
@@ -27,7 +27,7 @@ const signupSchema = yup.object().shape({
 });
 
 function Sign({ navigation }: any) {
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
 
   const {
@@ -51,22 +51,22 @@ function Sign({ navigation }: any) {
   }: any) => {
     try {
       setLoading(true);
-    //   const { status, data } = await sendSignupRequest(email, password);
+      const { status, data } = await sendSignupRequest(email, password);
       // Log status and data from response
       setLoading(false);
-    //   console.log(
-    //     `SignScreen.handleSignup: status=${status} | data=${JSON.stringify(
-    //       data
-    //     )}`
-    //   );
+      console.log(
+        `SignScreen.handleSignup: status=${status} | data=${JSON.stringify(
+          data
+        )}`
+      );
     //   if (status == 200) {
     //     dispatch(
     //       updateUserLogin({ ID: 0, email, password, passwordConfirmation })
     //     );
-    //     navigation.reset({
-    //       index: 0,
-    //       routes: [{ name: "HomeLoading" }]
-    //     });
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "ProfileTab" }]
+        });
     //   } else {
     //     showMessage({
     //       message: data.message,
@@ -90,9 +90,9 @@ function Sign({ navigation }: any) {
     navigation.navigate("Login");
   };
 
-//   if (loading) {
-//     return <Loading />;
-//   }
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={-90}>
