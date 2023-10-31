@@ -10,12 +10,22 @@
     },
     "preview": {
       "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://server.my-resume-app.com/",
+        "EXPO_PUBLIC_S3_BUCKET_URL": "https://iresume-staging.s3.us-east-2.amazonaws.com/",
+        "EXPO_PUBLIC_S3_POLICY_ENDPOINT": "politica/privacyPolicy.html"
+      },
       "android": {
         "buildType": "apk"
       }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://server.my-resume-app.com/",
+        "EXPO_PUBLIC_S3_BUCKET_URL": "https://iresume-staging.s3.us-east-2.amazonaws.com/",
+        "EXPO_PUBLIC_S3_POLICY_ENDPOINT": "politica/privacyPolicy.html"
+      }
     }
   },
   "submit": {
