@@ -1,19 +1,19 @@
 // import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer } from "@react-navigation/native";
 // import * as Linking from "expo-linking";
 // import { ProfileTabNavigator } from './Components/Navigation/ProfileTab';
-import { AuthStackNavigator } from './Components/Navigation/AuthStack';
-import { createStackNavigator } from '@react-navigation/stack';
-import { ProfileTabNavigator } from './Components/Navigation/ProfileTab';
+import { AuthStackNavigator } from "./Components/Navigation/AuthStack";
+import { createStackNavigator } from "@react-navigation/stack";
+import { ProfileTabNavigator } from "./Components/Navigation/ProfileTab";
 // import EditAcademicInfo from './Screens/Edit/EditAcademicInfo';
 // import EditProfessionalInfo from './Screens/Edit/EditProfessionalInfo';
 // import EditLanguageInfo from './Screens/Edit/EditLanguageInfo';
 // import EditSkillInfo from './Screens/Edit/EditSkillInfo';
 // import EditProfileInfo from './Screens/Edit/EditProfileInfo';
-// import DeleteAccount from './Screens/Menu/DeleteAccount';
-// import ChangePassword from './Screens/Menu/ChangePassword';
+import DeleteAccount from "./Screens/Menu/DeleteAccount";
+import ChangePassword from "./Screens/Menu/ChangePassword";
 // import FlashMessage from 'react-native-flash-message';
-// import Policy from './Screens/Menu/Policy';
+import Policy from "./Screens/Menu/Policy";
 // import * as Updates from 'expo-updates';
 
 // const prefix = Linking.createURL("/");
@@ -51,11 +51,12 @@ const AppStackNavigator = () => {
     <AppStack.Navigator screenOptions={{ headerShown: false }}>
       <AppStack.Screen name="AuthStack" component={AuthStackNavigator} />
       <AppStack.Screen name="ProfileTab" component={ProfileTabNavigator} />
-
+      <AppStack.Screen name="ChangePassword" component={ChangePassword} />
+      <AppStack.Screen name="DeleteAccount" component={DeleteAccount} />
+      <AppStack.Screen name="Policy" component={Policy} />
     </AppStack.Navigator>
   );
 };
-
 
 // const App = () => (
 //   <NavigationContainer linking={linking}>
@@ -65,10 +66,9 @@ const AppStackNavigator = () => {
 // );
 
 const App = () => (
-    <NavigationContainer >
-      <AppStackNavigator />
-    </NavigationContainer>
-  );
-  
+  <NavigationContainer>
+    <AppStackNavigator />
+  </NavigationContainer>
+);
 
 export default App;

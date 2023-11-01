@@ -54,21 +54,21 @@ export default function Menu({ navigation }: any) {
         <MenuButton
           disabled={handlingLogout}
           className={`bg-[#f2f2f2] border-[#42A5F5]`}
-        //   onPress={handlePolicy}
+          onPress={handlePolicy}
         >
           <Text className="text-[#42A5F5] text-lg">Política de privacidade</Text>
         </MenuButton>
         <MenuButton
           disabled={handlingLogout}
           className={`bg-[#f2f2f2] border-[#42A5F5]`}
-        //   onPress={handleChangePassword}
+          onPress={handleChangePassword}
         >
           <Text className="text-[#42A5F5] text-lg">ALTERAR SENHA</Text>
         </MenuButton>
         <MenuButton
           disabled={handlingLogout}
           className={`bg-[#f2f2f2] border-[#fb5b5a]`}
-        //   onPress={handleDeleteAccount}
+          onPress={handleDeleteAccount}
         >
           <Text className="text-[#fb5b5a] text-lg">DELETAR CONTA</Text>
         </MenuButton>
