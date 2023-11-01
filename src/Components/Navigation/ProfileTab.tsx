@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../../Screens/Profile/Home';
 import Preview from '../../Screens/Profile/Preview';
-// import Menu from '../../Screens/Profile/Menu';
+import Menu from '../../Screens/Profile/Menu';
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons/faHome";
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
@@ -28,11 +28,11 @@ export const ProfileTabNavigator = () => {
           tabBarLabel: "Preview",
           tabBarIcon: ({ color }) => (<FontAwesomeIcon icon={faFileCode} size={Platform.OS ? 20 : 30} color={color} />)
         }} />
-      {/* <Tab.Screen name="Menu" component={Menu}
+      <Tab.Screen name="Menu" component={Menu}
         options={{
           tabBarLabel: "Menu",
           tabBarIcon: ({ color }) => (<FontAwesomeIcon icon={faBars} size={Platform.OS ? 20 : 30} color={color} />)
-        }} /> */}
+        }} />
     </Tab.Navigator>
   );
 };
