@@ -6,7 +6,6 @@ import {
   ISkillInfo,
   Languages,
 } from "../../utils/DataTypes";
-import { aInfo1, pInfo1, pInfo2 } from "../../utils/infoExamples";
 import {
   geenrateLanguage,
   generateAcademicInfo,

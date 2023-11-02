@@ -5,9 +5,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { AuthStackNavigator } from "./Components/Navigation/AuthStack";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ProfileTabNavigator } from "./Components/Navigation/ProfileTab";
-// import EditAcademicInfo from './Screens/Edit/EditAcademicInfo';
+import EditAcademicInfo from "./Screens/Edit/EditAcademicInfo";
 // import EditProfessionalInfo from './Screens/Edit/EditProfessionalInfo';
-// import EditLanguageInfo from './Screens/Edit/EditLanguageInfo';
+import EditLanguageInfo from "./Screens/Edit/EditLanguageInfo";
 // import EditSkillInfo from './Screens/Edit/EditSkillInfo';
 // import EditProfileInfo from './Screens/Edit/EditProfileInfo';
 import DeleteAccount from "./Screens/Menu/DeleteAccount";
@@ -51,6 +51,9 @@ const AppStackNavigator = () => {
     <AppStack.Navigator screenOptions={{ headerShown: false }}>
       <AppStack.Screen name="AuthStack" component={AuthStackNavigator} />
       <AppStack.Screen name="ProfileTab" component={ProfileTabNavigator} />
+      <AppStack.Screen name="EditAcademicInfo" component={EditAcademicInfo} />
+      <AppStack.Screen name="EditLanguageInfo" component={EditLanguageInfo} />
+
       <AppStack.Screen name="ChangePassword" component={ChangePassword} />
       <AppStack.Screen name="DeleteAccount" component={DeleteAccount} />
       <AppStack.Screen name="Policy" component={Policy} />

@@ -103,9 +103,9 @@ const AcademicInfo: React.FC<IAcademicProps> = ({
         <AddInfoButton
           disabled={!Edit}
           className="absolute bottom-[-20]"
-        //   onPress={() => {
-        //     navigation.navigate("EditAcademicInfo");
-        //   }}
+          onPress={() => {
+            navigation.navigate("EditAcademicInfo");
+          }}
         />
       </FadePanel>
     </View>

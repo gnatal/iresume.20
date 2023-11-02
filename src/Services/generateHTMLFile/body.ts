@@ -33,6 +33,8 @@ export const generateHTMLProfile = (profile: IProfile) => {
 };
 
 export const generateAcademicInfo = (academicInfos: IAcademicInfo[]) => {
+  console.log("academic info", academicInfos);
+  
   if (academicInfos.length === 0) return "";
   const educationList = academicInfos.map((academicInfo) => {
     return `
