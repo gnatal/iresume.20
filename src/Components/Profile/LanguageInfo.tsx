@@ -105,9 +105,9 @@ const LanguageInfo: React.FC<ILanguageProps> = ({
         <AddInfoButton
           disabled={!Edit}
           className="absolute bottom-[-20]"
-        //   onPress={() => {
-        //     navigation.navigate("EditLanguageInfo");
-        //   }}
+          onPress={() => {
+            navigation.navigate("EditLanguageInfo");
+          }}
         />
       </FadePanel>
     </View>
