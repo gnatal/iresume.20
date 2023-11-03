@@ -9,8 +9,12 @@ import SkillInfo from "../../Components/Profile/SkillInfo";
 import { ToggleEditButton } from "../../Components/Basics/EditButtons";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import useLoadUserData from "../../Hooks/useLoadUserData";
 
 function HomeScreen({ navigation }: any) {
+
+  
+  const [dispatch] = useLoadUserData();
   const profileInfoRedux = useSelector((state: RootState) => state.profileinfo);
   const academicInfoRedux = useSelector(
     (state: RootState) => state.academicinfo

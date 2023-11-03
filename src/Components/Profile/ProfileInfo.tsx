@@ -74,9 +74,9 @@ const ProfileInfo: React.FC<IProfileInfoProps> = ({
         <EditButton
           disabled={!Edit}
           className="absolute bottom-[-10] right-[-10]"
-        //   onPress={() => {
-        //     navigation.navigate("EditProfileInfo");
-        //   }}
+          onPress={() => {
+            navigation.navigate("EditProfileInfo");
+          }}
         />
       </FadePanel>
     </View>

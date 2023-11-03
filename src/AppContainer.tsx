@@ -9,7 +9,7 @@ import EditAcademicInfo from "./Screens/Edit/EditAcademicInfo";
 // import EditProfessionalInfo from './Screens/Edit/EditProfessionalInfo';
 import EditLanguageInfo from "./Screens/Edit/EditLanguageInfo";
 // import EditSkillInfo from './Screens/Edit/EditSkillInfo';
-// import EditProfileInfo from './Screens/Edit/EditProfileInfo';
+import EditProfileInfo from "./Screens/Edit/EditProfileInfo";
 import DeleteAccount from "./Screens/Menu/DeleteAccount";
 import ChangePassword from "./Screens/Menu/ChangePassword";
 // import FlashMessage from 'react-native-flash-message';
@@ -53,7 +53,7 @@ const AppStackNavigator = () => {
       <AppStack.Screen name="ProfileTab" component={ProfileTabNavigator} />
       <AppStack.Screen name="EditAcademicInfo" component={EditAcademicInfo} />
       <AppStack.Screen name="EditLanguageInfo" component={EditLanguageInfo} />
-
+      <AppStack.Screen name="EditProfileInfo" component={EditProfileInfo} />
       <AppStack.Screen name="ChangePassword" component={ChangePassword} />
       <AppStack.Screen name="DeleteAccount" component={DeleteAccount} />
       <AppStack.Screen name="Policy" component={Policy} />
