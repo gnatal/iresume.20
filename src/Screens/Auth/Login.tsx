@@ -9,7 +9,7 @@ import {
   Platform,
 } from "react-native";
 import { useDispatch } from "react-redux";
-// import { updateUserLogin } from "../../store/loginReducer";
+import { updateUserLogin } from "../../store/loginReducer";
 import { sendLoginRequest } from "../../Services/sendLoginRequest";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -63,20 +63,25 @@ function Login({ navigation }: any) {
         )}`
       );
 
-      //   if (status == 200) {
-      //     dispatch(
-      //       updateUserLogin({ ID: data.userId || 0, email, password, passwordConfirmation: "" })
-      //     );
-      navigation.reset({
-        index: 0,
-        routes: [{ name: "ProfileTab" }],
-      });
-      //   } else {
-      //     showMessage({
-      //       message: data?.message,
-      //       type: "danger",
-      //     });
-      //   }
+      if (status == 200) {
+        dispatch(
+          updateUserLogin({
+            ID: data.userId || 0,
+            email,
+            password,
+            passwordConfirmation: "",
+          })
+        );
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "ProfileTab" }],
+        });
+      } else {
+        // showMessage({
+        //   message: data?.message,
+        //   type: "danger",
+        // });
+      }
     } catch (error) {
       console.log(
         `LoginScreen.handleLogin: Exception=${JSON.stringify(error)}`
