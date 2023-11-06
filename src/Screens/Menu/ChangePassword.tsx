@@ -5,7 +5,7 @@ import { ActivityIndicator, Platform, ScrollView, Text, TouchableOpacity, View }
 import { TextInput } from "react-native-gesture-handler";
 import { ChangePasswordSchema } from "../../Components/Yup/Schemas";
 import { sendChangePasswordRequest } from "../../Services/sendChangePasswordRequest";
-// import { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 
 
 export default function ChangePassword({ navigation }: any) {
@@ -32,10 +32,10 @@ export default function ChangePassword({ navigation }: any) {
       if (status == 200) {
         navigation.goBack();
       } else {
-        // showMessage({
-        //   message: "Erro. Tente novamente mais tarde...",
-        //   type: "danger",
-        // });
+        showMessage({
+          message: "Erro. Tente novamente mais tarde...",
+          type: "danger",
+        });
       }
     } catch (error) {
       console.log(error);

@@ -15,7 +15,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Loading from "../../Components/Basics/Loading";
 import * as yup from "yup";
-// import { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 import PolicyLink from "../../Components/Basics/PolicyLink";
 
 const loginSchema = yup.object().shape({
@@ -77,19 +77,19 @@ function Login({ navigation }: any) {
           routes: [{ name: "ProfileTab" }],
         });
       } else {
-        // showMessage({
-        //   message: data?.message,
-        //   type: "danger",
-        // });
+        showMessage({
+          message: data?.message,
+          type: "danger",
+        });
       }
     } catch (error) {
       console.log(
         `LoginScreen.handleLogin: Exception=${JSON.stringify(error)}`
       );
-      //   showMessage({
-      //     message: "Algo deu errado. Tente novamente mais tarde...",
-      //     type: "warning",
-      //   });
+        showMessage({
+          message: "Algo deu errado. Tente novamente mais tarde...",
+          type: "warning",
+        });
     } finally {
       setLoading(false);
     }
