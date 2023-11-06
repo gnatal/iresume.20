@@ -8,7 +8,7 @@ import {
   Platform,
 } from "react-native";
 import { useDispatch } from "react-redux";
-import { updateUserLogin } from "../../store/loginReducer"; 
+import { updateUserLogin } from "../../store/loginReducer";
 import { sendSignupRequest } from "../../Services/sendSignupRequest";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,7 +16,7 @@ import Loading from "../../Components/Basics/Loading";
 import * as yup from "yup";
 import { KeyboardAvoidingView } from "react-native";
 import PolicyLink from "../../Components/Basics/PolicyLink";
-// import { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 
 const signupSchema = yup.object().shape({
   email: yup.string().email().required(),
@@ -59,30 +59,30 @@ function Sign({ navigation }: any) {
           data
         )}`
       );
-    //   if (status == 200) {
-    //     dispatch(
-    //       updateUserLogin({ ID: 0, email, password, passwordConfirmation })
-    //     );
+      if (status == 200) {
+        dispatch(
+          updateUserLogin({ ID: 0, email, password, passwordConfirmation })
+        );
         navigation.reset({
           index: 0,
-          routes: [{ name: "ProfileTab" }]
+          routes: [{ name: "ProfileTab" }],
         });
-    //   } else {
-    //     showMessage({
-    //       message: data.message,
-    //       type: "danger",
-    //     });
-    //   }
+      } else {
+        showMessage({
+          message: data.message,
+          type: "danger",
+        });
+      }
     } catch (error) {
       console.log(
         `SignScreen.handleSignup: Exception=${JSON.stringify(error)}`
       );
-    //   showMessage({
-    //     message: "Algo deu errado. Tente novamente mais tarde...",
-    //     type: "warning",
-    //   });
+        showMessage({
+          message: "Algo deu errado. Tente novamente mais tarde...",
+          type: "warning",
+        });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -103,7 +103,8 @@ function Sign({ navigation }: any) {
         <View className="bg-[#F5F5F5] w-4/5 pb-6 mt-10 border-2 items-center border-solid  rounded-xl border-[#9FC0C7] shadow-xl shadow-black">
           <View className="w-4/5 text-black px-2 items-center mb-2 mt-8">
             <Text className="text-black mb-2  text-center">
-              Crie uma conta para gerar seu currículo formatado em PDF e HTML, totalmente gratuito.
+              Crie uma conta para gerar seu currículo formatado em PDF e HTML,
+              totalmente gratuito.
             </Text>
           </View>
           <View

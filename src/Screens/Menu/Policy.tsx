@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Platform,
 } from "react-native";
-// import { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 import { WebView } from "react-native-webview";
 
 export default function Policy({ navigation }: any) {
@@ -27,10 +27,10 @@ export default function Policy({ navigation }: any) {
         } catch (error) {
           console.log("Policy.getHTMLPage:", error);
           setHtml("<h1>Error loading page</h1>");
-        //   showMessage({
-        //     message: "Ocorreu algum erro ao tentar carregar a política de privacidade",
-        //     type: "danger",
-        //   });
+          showMessage({
+            message: "Ocorreu algum erro ao tentar carregar a política de privacidade",
+            type: "danger",
+          });
         }
       }
     }

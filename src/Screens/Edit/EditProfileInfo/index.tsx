@@ -17,7 +17,7 @@ import { updateProfile, updateProfileBasicInfo, updateProfilePhoto } from "../..
 import * as ImagePicker from "expo-image-picker";
 import { uploadImageToBucket } from "../../../Services/uploadImageToBucket";
 import Loading from "../../../Components/Basics/Loading";
-// import { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 import { EditButton } from "../../../Components/Basics/EditButtons";
 import * as FileSystem from "expo-file-system";
 
@@ -120,18 +120,18 @@ function EditProfileInfo({ navigation }: any) {
             setPhoto(fileUri);
           } else {
             const fileSizeMB = (fileSize / (1024 * 1024)).toFixed(2);
-            // showMessage({
-            //   message: "Imagem supera o tamanho máximo permitido",
-            //   description: `Máximo permitido de 2MB (tamanho do arquivo ${fileSizeMB}MB)`,
-            //   type: "warning",
-            //   duration: 5000,
-            // });
+            showMessage({
+              message: "Imagem supera o tamanho máximo permitido",
+              description: `Máximo permitido de 2MB (tamanho do arquivo ${fileSizeMB}MB)`,
+              type: "warning",
+              duration: 5000,
+            });
           };
         } else {
-        //   showMessage({
-        //     message: "Ocorreu um problema ao selecionar a imagem",
-        //     type: "danger",
-        //   });
+          showMessage({
+            message: "Ocorreu um problema ao selecionar a imagem",
+            type: "danger",
+          });
         }
       };
     } catch (error) {

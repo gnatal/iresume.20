@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ActivityIndicator, Platform, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { sendDeleteAccountRequest } from "../../Services/sendDeleteAccountRequest";
-// import { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 
 export default function DeleteAccount({ navigation }: any) {
   const [handlingDelete, setHandlingDelete] = useState(false);
@@ -16,10 +16,10 @@ export default function DeleteAccount({ navigation }: any) {
           routes: [{ name: "AuthStack" }]
         });
       } else {
-        // showMessage({
-        //   message: "Erro. Tente novamente mais tarde...",
-        //   type: "danger",
-        // });
+        showMessage({
+          message: "Erro. Tente novamente mais tarde...",
+          type: "danger",
+        });
       }
     } catch (error) {
       console.log(error);
