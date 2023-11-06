@@ -104,9 +104,9 @@ const SkillInfo: React.FC<ISkillProps> = ({
         <AddInfoButton
           disabled={!Edit}
           className="absolute bottom-[-20]"
-        //   onPress={() => {
-        //     navigation.navigate("EditSkillInfo");
-        //   }}
+          onPress={() => {
+            navigation.navigate("EditSkillInfo");
+          }}
         />
       </FadePanel>
     </View>
