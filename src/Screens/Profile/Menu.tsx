@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 import MenuButton from "../../Components/Menu/Buttons";
 import { sendLogoutRequest } from "../../Services/sendLogoutRequest";
-// import { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 
 export default function Menu({ navigation }: any) {
   const [handlingLogout, setHandlingLogout] = useState<boolean>(false);
@@ -20,21 +20,21 @@ export default function Menu({ navigation }: any) {
         });
       } else {
         setHandlingLogout(false);
-        // showMessage({
-        //   message: "Erro. Tente novamente mais tarde...",
-        //   description: data?.message,
-        //   type: "danger",
-        // });
+        showMessage({
+          message: "Erro. Tente novamente mais tarde...",
+          description: data?.message,
+          type: "danger",
+        });
       };
     } catch (error) {
       console.log(
         `Menu.handleLogout: Exception=${JSON.stringify(error)}`
       );
       setHandlingLogout(false);
-    //   showMessage({
-    //     message: "Erro. Tente novamente mais tarde...",
-    //     type: "danger",
-    //   });
+      showMessage({
+        message: "Erro. Tente novamente mais tarde...",
+        type: "danger",
+      });
     };
   };
   const handlePolicy = (): void => {

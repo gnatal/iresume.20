@@ -22,7 +22,7 @@ import { writeHTMLFile } from "../../Services/fileService";
 import { useDispatch } from "react-redux";
 import { updateProfile } from "../../store/profileInfoReducer";
 import SelectDropdown from "react-native-select-dropdown";
-// import { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 
 export default function Preview({ navigation }: any) {
   const profileInfoRedux = useSelector((state: RootState) => state.profileinfo);
@@ -86,11 +86,11 @@ export default function Preview({ navigation }: any) {
           setKey(key + 1);
         }, 800); // don't change THIS CAUSE THE WEBVIEW MAY CRASH IF THE UPDATE TIME IS TOO SHORT
       } else {
-        // showMessage({
-        //   message: "Não foi possível criar seu resume...",
-        //   description: "Tente novamente mais tarde",
-        //   type: "warning"
-        // });
+        showMessage({
+          message: "Não foi possível criar seu resume...",
+          description: "Tente novamente mais tarde",
+          type: "warning"
+        });
       }
     } catch (e) {
       console.log("Error generating html page", e);

@@ -11,7 +11,7 @@ import EditSkillInfo from "./Screens/Edit/EditSkillInfo";
 import EditProfileInfo from "./Screens/Edit/EditProfileInfo";
 import DeleteAccount from "./Screens/Menu/DeleteAccount";
 import ChangePassword from "./Screens/Menu/ChangePassword";
-// import FlashMessage from 'react-native-flash-message';
+import FlashMessage from "react-native-flash-message";
 import Policy from "./Screens/Menu/Policy";
 // import * as Updates from 'expo-updates';
 
@@ -75,6 +75,7 @@ const AppStackNavigator = () => {
 const App = () => (
   <NavigationContainer>
     <AppStackNavigator />
+    <FlashMessage position="top" duration={3000} statusBarHeight={50} />
   </NavigationContainer>
 );
 
