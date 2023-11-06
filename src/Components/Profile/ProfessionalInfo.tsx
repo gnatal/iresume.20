@@ -111,9 +111,9 @@ const ProfessionalInfo: React.FC<IProfessionalProps> = ({
         <AddInfoButton
           disabled={!Edit}
           className="absolute bottom-[-20]"
-        //   onPress={() => {
-        //     navigation.navigate("EditProfessionalInfo");
-        //   }}
+          onPress={() => {
+            navigation.navigate("EditProfessionalInfo");
+          }}
         />
       </FadePanel>
     </View>

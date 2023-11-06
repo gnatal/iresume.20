@@ -1,14 +1,13 @@
 // import 'react-native-gesture-handler';
 import { NavigationContainer } from "@react-navigation/native";
 // import * as Linking from "expo-linking";
-// import { ProfileTabNavigator } from './Components/Navigation/ProfileTab';
 import { AuthStackNavigator } from "./Components/Navigation/AuthStack";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ProfileTabNavigator } from "./Components/Navigation/ProfileTab";
 import EditAcademicInfo from "./Screens/Edit/EditAcademicInfo";
-// import EditProfessionalInfo from './Screens/Edit/EditProfessionalInfo';
+import EditProfessionalInfo from "./Screens/Edit/EditProfessionalInfo";
 import EditLanguageInfo from "./Screens/Edit/EditLanguageInfo";
-// import EditSkillInfo from './Screens/Edit/EditSkillInfo';
+import EditSkillInfo from "./Screens/Edit/EditSkillInfo";
 import EditProfileInfo from "./Screens/Edit/EditProfileInfo";
 import DeleteAccount from "./Screens/Menu/DeleteAccount";
 import ChangePassword from "./Screens/Menu/ChangePassword";
@@ -54,6 +53,11 @@ const AppStackNavigator = () => {
       <AppStack.Screen name="EditAcademicInfo" component={EditAcademicInfo} />
       <AppStack.Screen name="EditLanguageInfo" component={EditLanguageInfo} />
       <AppStack.Screen name="EditProfileInfo" component={EditProfileInfo} />
+      <AppStack.Screen
+        name="EditProfessionalInfo"
+        component={EditProfessionalInfo}
+      />
+      <AppStack.Screen name="EditSkillInfo" component={EditSkillInfo} />
       <AppStack.Screen name="ChangePassword" component={ChangePassword} />
       <AppStack.Screen name="DeleteAccount" component={DeleteAccount} />
       <AppStack.Screen name="Policy" component={Policy} />
