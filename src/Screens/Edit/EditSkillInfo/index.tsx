@@ -19,6 +19,8 @@ import {
   updateSkill,
 } from "../../../store/skillInfoReducer";
 import Slider from "@react-native-community/slider";
+import { useDebouncedCallback } from "use-debounce";
+
 
 function EditSkillInfo({ route, navigation }: any) {
   const skillInfoRedux = useSelector((state: RootState) => state.skillinfo.sInfoArray);
@@ -49,6 +51,11 @@ function EditSkillInfo({ route, navigation }: any) {
     },
   });
 
+  const debouncedEditSkill = useDebouncedCallback(
+    (EditedInfo: any) => handleEditSkill(EditedInfo)
+    ,1000
+  )
+
   const handleEditSkill = async (EditedInfo: any) => {
     try {
       // Set info with incoming form values
@@ -68,6 +75,12 @@ function EditSkillInfo({ route, navigation }: any) {
       );
     }
   };
+
+  const debouncedCancel = useDebouncedCallback(
+    () => handleCancelEditSkill()
+    ,1000
+  )
+
   const handleCancelEditSkill = async () => {
     try {
       navigation.goBack();
@@ -163,7 +176,7 @@ function EditSkillInfo({ route, navigation }: any) {
             className={`h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center ${
               Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
             } shadow-black mt-8 mb-0`}
-            onPress={handleSubmit(handleEditSkill)}
+            onPress={handleSubmit(debouncedEditSkill)}
           >
             <Text className="text-white">Salvar</Text>
           </TouchableOpacity>
@@ -175,7 +188,7 @@ function EditSkillInfo({ route, navigation }: any) {
             className={`h-12 w-4/5 bg-[#fb5b5a] justify-center rounded-lg items-center ${
               Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
             } shadow-black mt-2 mb-0`}
-            onPress={handleCancelEditSkill}
+            onPress={debouncedCancel}
           >
             <Text className="text-white">Cancelar</Text>
           </TouchableOpacity>

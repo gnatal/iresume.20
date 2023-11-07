@@ -13,13 +13,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
-import { updateProfile, updateProfileBasicInfo, updateProfilePhoto } from "../../../store/profileInfoReducer";
+import {
+  updateProfile,
+  updateProfileBasicInfo,
+  updateProfilePhoto,
+} from "../../../store/profileInfoReducer";
 import * as ImagePicker from "expo-image-picker";
 import { uploadImageToBucket } from "../../../Services/uploadImageToBucket";
 import Loading from "../../../Components/Basics/Loading";
 import { showMessage } from "react-native-flash-message";
 import { EditButton } from "../../../Components/Basics/EditButtons";
 import * as FileSystem from "expo-file-system";
+import { useDebouncedCallback } from "use-debounce";
 
 const profileSchema = yup.object().shape({
   name: yup.string().required(),
@@ -36,7 +41,7 @@ function EditProfileInfo({ navigation }: any) {
 
   useEffect(() => {
     if (profileInfoRedux?.photo) {
-      setPhoto(profileInfoRedux?.photo)
+      setPhoto(profileInfoRedux?.photo);
     }
   }, [profileInfoRedux]);
 
@@ -56,8 +61,7 @@ function EditProfileInfo({ navigation }: any) {
     },
   });
 
-  if (profileInfoRedux?.isLoading)
-    return <Loading />
+  if (profileInfoRedux?.isLoading) return <Loading />;
 
   const uploadImageToS3 = async () => {
     try {
@@ -68,18 +72,35 @@ function EditProfileInfo({ navigation }: any) {
         dispatch(updateProfilePhoto({ photo: location }));
       }
       // Append date so the app always reload image when a new picture is sent
-      return location
+      return location;
     } catch (error) {
       console.error("uploadImageToS3:", error);
       return "";
     }
   };
 
-  const handleEditProfile = async ({ name, email, phone, address, description }: any) => {
+  const debounceCancel = useDebouncedCallback(() => handleCancel(), 1000);
+  const handleCancel = () => {
+    navigation.goBack();
+  };
+
+  const debounceEditProfile = useDebouncedCallback((profile: any) => {
+    handleEditProfile({ ...profile });
+  }, 1000);
+
+  const handleEditProfile = async ({
+    name,
+    email,
+    phone,
+    address,
+    description,
+  }: any) => {
     try {
       let newImageLink = "";
-      if ((photo) && (photo != profileInfoRedux?.photo))
+      if (photo && photo != profileInfoRedux?.photo)
         newImageLink = await uploadImageToS3();
+      console.log("dispatching");
+
       dispatch(
         updateProfile({
           name,
@@ -90,12 +111,16 @@ function EditProfileInfo({ navigation }: any) {
           pictureLink: newImageLink || profileInfoRedux?.photo,
         })
       );
+      console.log("dispatching 2");
       dispatch(
         updateProfileBasicInfo({ name, email, phone, address, description })
       );
+      console.log("dispatching 3");
       navigation.goBack();
     } catch (error) {
-      console.log(`Profile.handleEditProfile: Exception=${JSON.stringify(error)}`);
+      console.log(
+        `Profile.handleEditProfile: Exception=${JSON.stringify(error)}`
+      );
     }
   };
 
@@ -126,17 +151,17 @@ function EditProfileInfo({ navigation }: any) {
               type: "warning",
               duration: 5000,
             });
-          };
+          }
         } else {
           showMessage({
             message: "Ocorreu um problema ao selecionar a imagem",
             type: "danger",
           });
         }
-      };
+      }
     } catch (error) {
       console.log("handleChoosePhoto:", error);
-    };
+    }
   };
 
   return (
@@ -144,30 +169,38 @@ function EditProfileInfo({ navigation }: any) {
       <View className="flex flex-col items-center w-screen h-auto bg-[#f2f2f2]">
         <View className="bg-[#F5F5F5] w-4/5 mt-10 items-center rounded-xl">
           {/* Uses one of the three image options below */}
-          {photo &&
+          {photo && (
             <Image className="w-full h-60 rounded-xl" source={{ uri: photo }} />
-          }
-          {!photo && profileInfoRedux?.photo &&
-            <Image className="w-full h-60 rounded-xl" source={{ uri: profileInfoRedux?.photo }} />
-          }
-          {!photo && !profileInfoRedux?.photo &&
+          )}
+          {!photo && profileInfoRedux?.photo && (
+            <Image
+              className="w-full h-60 rounded-xl"
+              source={{ uri: profileInfoRedux?.photo }}
+            />
+          )}
+          {!photo && !profileInfoRedux?.photo && (
             <Image
               className="w-full rounded-xl"
               source={require("../../../../assets/AvatarPicture.png")}
             />
-          }
-          <EditButton className="absolute bottom-[-10] right-[-10]" onPress={handleChoosePhoto} />
+          )}
+          <EditButton
+            className="absolute bottom-[-10] right-[-10]"
+            onPress={handleChoosePhoto}
+          />
         </View>
         <View
-          className={`bg-[#F5F5F5] w-4/5 pb-10 mb-10 mt-10 border-2 items-center border-solid  rounded-xl border-[#9FC0C7] ${Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
-            } shadow-black`}
+          className={`bg-[#F5F5F5] w-4/5 pb-10 mb-10 mt-10 border-2 items-center border-solid  rounded-xl border-[#9FC0C7] ${
+            Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
+          } shadow-black`}
         >
           <View className="w-80 rounded-3xl h-14 flex items-center justify-center mt-10 mb-4 ">
             <Text className="text-black text-lg">Informações de contato</Text>
           </View>
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
-              } shadow-black px-2 justify-center h-12 mb-0 mt-2`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
+            } shadow-black px-2 justify-center h-12 mb-0 mt-2`}
           >
             <Controller
               control={control}
@@ -190,8 +223,9 @@ function EditProfileInfo({ navigation }: any) {
             <Text className="text-[#FF5252] mb-2">{errors?.name?.message}</Text>
           )}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
-              } shadow-black px-2 justify-center h-12 mb-0 mt-4`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
+            } shadow-black px-2 justify-center h-12 mb-0 mt-4`}
           >
             <Controller
               control={control}
@@ -216,8 +250,9 @@ function EditProfileInfo({ navigation }: any) {
             </Text>
           )}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
-              } shadow-black px-2 justify-center h-12 mb-0 mt-4`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
+            } shadow-black px-2 justify-center h-12 mb-0 mt-4`}
           >
             <Controller
               control={control}
@@ -242,8 +277,9 @@ function EditProfileInfo({ navigation }: any) {
             </Text>
           )}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
-              } shadow-black px-2 justify-center h-12 mb-0 mt-4`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
+            } shadow-black px-2 justify-center h-12 mb-0 mt-4`}
           >
             <Controller
               control={control}
@@ -263,8 +299,9 @@ function EditProfileInfo({ navigation }: any) {
             />
           </View>
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
-              } shadow-black px-2 justify-center max-h-36 mb-0 mt-4`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
+            } shadow-black px-2 justify-center max-h-36 mb-0 mt-4`}
             style={{ minHeight: 48 }}
           >
             <Controller
@@ -286,16 +323,18 @@ function EditProfileInfo({ navigation }: any) {
             />
           </View>
           <TouchableOpacity
-            className={`h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black mt-8 mb-0`}
-            onPress={handleSubmit(handleEditProfile)}
+            className={`h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black mt-8 mb-0`}
+            onPress={handleSubmit(debounceEditProfile)}
           >
             <Text className="text-white">Salvar</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            className={`h-12 w-4/5 bg-[#fb5b5a] justify-center rounded-lg items-center ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black mt-2 mb-0`}
-            onPress={() => { navigation.goBack() }}
+            className={`h-12 w-4/5 bg-[#fb5b5a] justify-center rounded-lg items-center ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black mt-2 mb-0`}
+            onPress={debounceCancel}
           >
             <Text className="text-white">Cancelar</Text>
           </TouchableOpacity>

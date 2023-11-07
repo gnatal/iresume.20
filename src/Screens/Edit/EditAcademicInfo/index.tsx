@@ -14,7 +14,11 @@ import { IAcademicInfo } from "../../../utils/DataTypes";
 import Checkbox from "expo-checkbox";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
-import { createAcademic, updateAcademic } from "../../../store/academicInfoReducer";
+import {
+  createAcademic,
+  updateAcademic,
+} from "../../../store/academicInfoReducer";
+import { useDebouncedCallback } from "use-debounce";
 
 function EditAcademicInfo({ route, navigation }: any) {
   const academicInfoRedux = useSelector(
@@ -66,6 +70,11 @@ function EditAcademicInfo({ route, navigation }: any) {
     },
   });
 
+  const debouncedEditAcademicInfo = useDebouncedCallback(
+    (EditInfo: any) => handleEditAcademic(EditInfo),
+    1000
+  );
+
   const handleEditAcademic = async (EditedInfo: any) => {
     try {
       // Set info with incoming form values
@@ -98,6 +107,12 @@ function EditAcademicInfo({ route, navigation }: any) {
       );
     }
   };
+
+  const debouncedCancelEdit = useDebouncedCallback(
+    () => handleCancelEditAcademic(),
+    1000
+  );
+
   const handleCancelEditAcademic = async () => {
     try {
       navigation.goBack();
@@ -121,8 +136,9 @@ function EditAcademicInfo({ route, navigation }: any) {
           </View>
           {/* Graduation */}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black px-2 justify-center h-12 mb-0 mt-2`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black px-2 justify-center h-12 mb-0 mt-2`}
           >
             <Controller
               control={control}
@@ -149,8 +165,9 @@ function EditAcademicInfo({ route, navigation }: any) {
           )}
           {/* Institution */}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black px-2 justify-center h-12 mb-0 mt-4`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black px-2 justify-center h-12 mb-0 mt-4`}
           >
             <Controller
               control={control}
@@ -182,8 +199,9 @@ function EditAcademicInfo({ route, navigation }: any) {
             <View className="flex-row w-4/5">
               {/* Start Month */}
               <View
-                className={`w-1/4 rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-                  } px-2 mr-4 justify-center h-12 shadow-black text-black bg-[#F0F0F0]`}
+                className={`w-1/4 rounded-lg ${
+                  Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+                } px-2 mr-4 justify-center h-12 shadow-black text-black bg-[#F0F0F0]`}
               >
                 <Controller
                   control={control}
@@ -209,8 +227,9 @@ function EditAcademicInfo({ route, navigation }: any) {
               </View>
               {/* Start Year */}
               <View
-                className={`w-2/5 rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-                  } px-2  justify-center h-12 shadow-black text-black bg-[#F0F0F0]`}
+                className={`w-2/5 rounded-lg ${
+                  Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+                } px-2  justify-center h-12 shadow-black text-black bg-[#F0F0F0]`}
               >
                 <Controller
                   control={control}
@@ -274,8 +293,9 @@ function EditAcademicInfo({ route, navigation }: any) {
               <View className="flex-row w-4/5">
                 {/* End Month */}
                 <View
-                  className={`w-1/4 rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-                    } px-2 mr-4 justify-center h-12 shadow-black text-black bg-[#F0F0F0]`}
+                  className={`w-1/4 rounded-lg ${
+                    Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+                  } px-2 mr-4 justify-center h-12 shadow-black text-black bg-[#F0F0F0]`}
                 >
                   <Controller
                     control={control}
@@ -301,8 +321,9 @@ function EditAcademicInfo({ route, navigation }: any) {
                 </View>
                 {/* End Year */}
                 <View
-                  className={`w-2/5 rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-                    } px-2  justify-center h-12 shadow-black text-black bg-[#F0F0F0]`}
+                  className={`w-2/5 rounded-lg ${
+                    Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+                  } px-2  justify-center h-12 shadow-black text-black bg-[#F0F0F0]`}
                 >
                   <Controller
                     control={control}
@@ -343,8 +364,9 @@ function EditAcademicInfo({ route, navigation }: any) {
           )}
           {/* Description */}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black px-2 justify-center h-36 mb-0 mt-4`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black px-2 justify-center h-36 mb-0 mt-4`}
           >
             <Controller
               control={control}
@@ -371,9 +393,10 @@ function EditAcademicInfo({ route, navigation }: any) {
           )}
           {/* Submit Button */}
           <TouchableOpacity
-            className={`h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black mt-8 mb-0`}
-            onPress={handleSubmit(handleEditAcademic)}
+            className={`h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black mt-8 mb-0`}
+            onPress={handleSubmit(debouncedEditAcademicInfo)}
           >
             <Text className="text-white">Salvar</Text>
           </TouchableOpacity>
@@ -382,9 +405,10 @@ function EditAcademicInfo({ route, navigation }: any) {
           )}
           {/* Cancel Button */}
           <TouchableOpacity
-            className={`h-12 w-4/5 bg-[#fb5b5a] justify-center rounded-lg items-center ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black mt-2 mb-0`}
-            onPress={handleCancelEditAcademic}
+            className={`h-12 w-4/5 bg-[#fb5b5a] justify-center rounded-lg items-center ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black mt-2 mb-0`}
+            onPress={debouncedCancelEdit}
           >
             <Text className="text-white">Cancelar</Text>
           </TouchableOpacity>

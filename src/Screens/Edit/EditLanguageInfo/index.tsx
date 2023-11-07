@@ -14,8 +14,12 @@ import { ILanguageInfo, Languages } from "../../../utils/DataTypes";
 import SelectDropdown from "react-native-select-dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
-import { createLanguage, updateLanguage } from "../../../store/languageInfoReducer";
+import {
+  createLanguage,
+  updateLanguage,
+} from "../../../store/languageInfoReducer";
 import Slider from "@react-native-community/slider";
+import { useDebouncedCallback } from "use-debounce";
 
 function EditLanguageInfo({ route, navigation }: any) {
   const languageInfoRedux = useSelector(
@@ -48,6 +52,11 @@ function EditLanguageInfo({ route, navigation }: any) {
     },
   });
 
+  const debouncedEditLanguage = useDebouncedCallback(
+    (EditedInfo: any) => handleEditLanguage(EditedInfo),
+    1000
+  );
+
   const handleEditLanguage = async (EditedInfo: any) => {
     try {
       // Set info with incoming form values
@@ -69,6 +78,12 @@ function EditLanguageInfo({ route, navigation }: any) {
       );
     }
   };
+
+  const debouncedCancel = useDebouncedCallback(
+    () => handleCancelEditLanguage(),
+    1000
+  );
+
   const handleCancelEditLanguage = async () => {
     try {
       navigation.goBack();
@@ -92,8 +107,9 @@ function EditLanguageInfo({ route, navigation }: any) {
           </View>
           {/* Graduation */}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black px-2 justify-center h-14 mb-0 mt-2`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black px-2 justify-center h-14 mb-0 mt-2`}
           >
             <Controller
               control={control}
@@ -133,8 +149,9 @@ function EditLanguageInfo({ route, navigation }: any) {
           )}
           {/* Institution */}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black px-2 justify-center h-32 mb-0 mt-4`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black px-2 justify-center h-32 mb-0 mt-4`}
           >
             <Controller
               control={control}
@@ -170,9 +187,10 @@ function EditLanguageInfo({ route, navigation }: any) {
           )}
           {/* Submit Button */}
           <TouchableOpacity
-            className={`h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black mt-8 mb-0`}
-            onPress={handleSubmit(handleEditLanguage)}
+            className={`h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black mt-8 mb-0`}
+            onPress={handleSubmit(debouncedEditLanguage)}
           >
             <Text className="text-white">Salvar</Text>
           </TouchableOpacity>
@@ -181,9 +199,10 @@ function EditLanguageInfo({ route, navigation }: any) {
           )}
           {/* Cancel Button */}
           <TouchableOpacity
-            className={`h-12 w-4/5 bg-[#fb5b5a] justify-center rounded-lg items-center ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black mt-2 mb-0`}
-            onPress={handleCancelEditLanguage}
+            className={`h-12 w-4/5 bg-[#fb5b5a] justify-center rounded-lg items-center ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black mt-2 mb-0`}
+            onPress={debouncedCancel}
           >
             <Text className="text-white">Cancelar</Text>
           </TouchableOpacity>
