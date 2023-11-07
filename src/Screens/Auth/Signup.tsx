@@ -17,6 +17,7 @@ import * as yup from "yup";
 import { KeyboardAvoidingView } from "react-native";
 import PolicyLink from "../../Components/Basics/PolicyLink";
 import { showMessage } from "react-native-flash-message";
+import { useDebouncedCallback } from "use-debounce";
 
 const signupSchema = yup.object().shape({
   email: yup.string().email().required(),
@@ -43,6 +44,12 @@ function Sign({ navigation }: any) {
       passwordConfirmation: "",
     },
   });
+
+  const debouncedSignup = useDebouncedCallback(
+    ({ email, password, passwordConfirmation }: any) =>
+      handleSignup({ email, password, passwordConfirmation }),
+    1000
+  );
 
   const handleSignup = async ({
     email,
@@ -77,10 +84,10 @@ function Sign({ navigation }: any) {
       console.log(
         `SignScreen.handleSignup: Exception=${JSON.stringify(error)}`
       );
-        showMessage({
-          message: "Algo deu errado. Tente novamente mais tarde...",
-          type: "warning",
-        });
+      showMessage({
+        message: "Algo deu errado. Tente novamente mais tarde...",
+        type: "warning",
+      });
     } finally {
       setLoading(false);
     }
@@ -191,7 +198,7 @@ function Sign({ navigation }: any) {
             className={`h-12 w-4/5 bg-[#009688] justify-center rounded-lg items-center ${
               Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
             } shadow-black mt-8 mb-0`}
-            onPress={handleSubmit(handleSignup)}
+            onPress={handleSubmit(debouncedSignup)}
           >
             <Text className="text-white">Criar</Text>
           </TouchableOpacity>
