@@ -45,11 +45,11 @@ const profileInfoSlice = createSlice({
       state.isLoading = true
     });
     builder.addCase(updateProfile.rejected, (state, action) => {
-    //   showMessage({ message: "Ocorreu algum erro ao atualizar as informações", type: "danger" });
+      showMessage({ message: "Ocorreu algum erro ao atualizar as informações", type: "danger" });
       state.isLoading = false
     });
     builder.addCase(updateProfile.fulfilled, (state, action) => {
-    //   showMessage({ message: "Informações atualizadas", type: "success", duration: 1000 });
+      showMessage({ message: "Informações atualizadas", type: "success", duration: 1000 });
       state.isLoading = false
       state.name = action.payload.name;
       state.email = action.payload.email;

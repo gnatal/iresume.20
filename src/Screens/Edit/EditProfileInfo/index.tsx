@@ -38,6 +38,10 @@ function EditProfileInfo({ navigation }: any) {
   const profileInfoRedux = useSelector((state: RootState) => state.profileinfo);
   const dispatch = useDispatch<any>();
   const [photo, setPhoto] = useState(null);
+  const debounceCancel = useDebouncedCallback(() => handleCancel(), 1000);
+  const debounceEditProfile = useDebouncedCallback((profile: any) => {
+    handleEditProfile({ ...profile });
+  }, 1000);
 
   useEffect(() => {
     if (profileInfoRedux?.photo) {
@@ -79,14 +83,9 @@ function EditProfileInfo({ navigation }: any) {
     }
   };
 
-  const debounceCancel = useDebouncedCallback(() => handleCancel(), 1000);
   const handleCancel = () => {
     navigation.goBack();
   };
-
-  const debounceEditProfile = useDebouncedCallback((profile: any) => {
-    handleEditProfile({ ...profile });
-  }, 1000);
 
   const handleEditProfile = async ({
     name,
@@ -99,16 +98,16 @@ function EditProfileInfo({ navigation }: any) {
       let newImageLink = "";
       if (photo && photo != profileInfoRedux?.photo)
         newImageLink = await uploadImageToS3();
-      // dispatch(
-      //   updateProfile({
-      //     name,
-      //     email,
-      //     phone,
-      //     description,
-      //     address,
-      //     pictureLink: newImageLink || profileInfoRedux?.photo,
-      //   })
-      // );
+      dispatch(
+        updateProfile({
+          name,
+          email,
+          phone,
+          description,
+          address,
+          pictureLink: newImageLink || profileInfoRedux?.photo,
+        })
+      );
       dispatch(
         updateProfileBasicInfo({ name, email, phone, address, description })
       );
