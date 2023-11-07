@@ -99,23 +99,19 @@ function EditProfileInfo({ navigation }: any) {
       let newImageLink = "";
       if (photo && photo != profileInfoRedux?.photo)
         newImageLink = await uploadImageToS3();
-      console.log("dispatching");
-
-      dispatch(
-        updateProfile({
-          name,
-          email,
-          phone,
-          description,
-          address,
-          pictureLink: newImageLink || profileInfoRedux?.photo,
-        })
-      );
-      console.log("dispatching 2");
+      // dispatch(
+      //   updateProfile({
+      //     name,
+      //     email,
+      //     phone,
+      //     description,
+      //     address,
+      //     pictureLink: newImageLink || profileInfoRedux?.photo,
+      //   })
+      // );
       dispatch(
         updateProfileBasicInfo({ name, email, phone, address, description })
       );
-      console.log("dispatching 3");
       navigation.goBack();
     } catch (error) {
       console.log(

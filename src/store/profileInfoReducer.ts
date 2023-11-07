@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Axios_API } from "../Api";
 import { IProfileInfo } from "../utils/DataTypes";
-// import { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 
 const uInfo: IProfileInfo = {
     name: "",
@@ -19,7 +19,7 @@ export const getProfile = createAsyncThunk("getProfile", async () => {
 });
 
 export const updateProfile = createAsyncThunk("updateProfile", async (data: any) => {
-//   showMessage({ message: "Enviando atualização", type: "info" });
+  showMessage({ message: "Enviando atualização", type: "info" });
   const result = await Axios_API.patch("/profile", data);
   return { ...result.data.profile };
 });
@@ -63,7 +63,7 @@ const profileInfoSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getProfile.rejected, (state, action) => {
-    //   showMessage({ message: "Ocorreu algum erro ao obter as informações do usuário", type: "danger" });
+      showMessage({ message: "Ocorreu algum erro ao obter as informações do usuário", type: "danger" });
       state.isLoading = false
     });
     builder.addCase(getProfile.fulfilled, (state, action) => {
