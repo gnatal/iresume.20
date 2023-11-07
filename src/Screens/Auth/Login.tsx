@@ -17,6 +17,7 @@ import Loading from "../../Components/Basics/Loading";
 import * as yup from "yup";
 import { showMessage } from "react-native-flash-message";
 import PolicyLink from "../../Components/Basics/PolicyLink";
+import { useDebouncedCallback } from "use-debounce";
 
 const loginSchema = yup.object().shape({
   email: yup.string().email().required(),
@@ -46,6 +47,11 @@ function Login({ navigation }: any) {
       routes: [{ name: "HomeLoading" }],
     });
   };
+
+  const debouncedLogin = useDebouncedCallback(
+    ({ email, password }: any) => handleLogin({ email, password }),
+    1000
+  );
 
   const handleLogin = async ({ email, password }: any) => {
     try {
@@ -86,10 +92,10 @@ function Login({ navigation }: any) {
       console.log(
         `LoginScreen.handleLogin: Exception=${JSON.stringify(error)}`
       );
-        showMessage({
-          message: "Algo deu errado. Tente novamente mais tarde...",
-          type: "warning",
-        });
+      showMessage({
+        message: "Algo deu errado. Tente novamente mais tarde...",
+        type: "warning",
+      });
     } finally {
       setLoading(false);
     }
@@ -163,7 +169,7 @@ function Login({ navigation }: any) {
             className={`h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center ${
               Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
             } shadow-black mt-8 mb-0`}
-            onPress={handleSubmit(handleLogin)}
+            onPress={handleSubmit(debouncedLogin)}
           >
             <Text className="text-white">Entrar</Text>
           </TouchableOpacity>
