@@ -18,6 +18,7 @@ import {
 } from "../../../store/professionalInfoReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
+import { useDebouncedCallback } from "use-debounce";
 
 function EditProfessionalInfo({ route, navigation }: any) {
   const professionalInfoRedux = useSelector(
@@ -69,6 +70,11 @@ function EditProfessionalInfo({ route, navigation }: any) {
     },
   });
 
+  const debouncedEditProfessional = useDebouncedCallback(
+    (EditedInfo: any) => handleEditProfessional(EditedInfo),
+    1000
+  );
+
   const handleEditProfessional = async (EditedInfo: any) => {
     try {
       // Set info with incoming form values
@@ -100,6 +106,11 @@ function EditProfessionalInfo({ route, navigation }: any) {
       );
     }
   };
+
+  const debouncedCancel = useDebouncedCallback(
+    () => handleCancelEditProfessional(),
+    1000
+  );
   const handleCancelEditProfessional = async () => {
     try {
       navigation.goBack();
@@ -378,7 +389,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
           {/* Submit Button */}
           <TouchableOpacity
             className="h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center shadow-lg shadow-black mt-8 mb-0"
-            onPress={handleSubmit(handleEditProfessional)}
+            onPress={handleSubmit(debouncedEditProfessional)}
           >
             <Text className="text-white">Salvar</Text>
           </TouchableOpacity>
@@ -388,7 +399,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
           {/* Cancel Button */}
           <TouchableOpacity
             className="h-12 w-4/5 bg-[#fb5b5a] justify-center rounded-lg items-center shadow-lg shadow-black mt-2 mb-0"
-            onPress={handleCancelEditProfessional}
+            onPress={debouncedCancel}
           >
             <Text className="text-white">Cancelar</Text>
           </TouchableOpacity>
