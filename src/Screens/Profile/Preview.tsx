@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   ScrollView,
   RefreshControl,
+  Dimensions,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { WebView } from "react-native-webview";
@@ -42,6 +43,10 @@ export default function Preview({ navigation }: any) {
   const [key, setKey] = useState(0);
   const [template, setTemplate] = useState(0);
   const dispatch = useDispatch<any>();
+
+  const webviewHeight = Dimensions.get("window").height > 600 ? Dimensions.get("window").height * (2/3) : Dimensions.get("window").height * (2/4) ;
+
+  
 
   const generateHTMLData = () => {
     return {
@@ -130,7 +135,12 @@ export default function Preview({ navigation }: any) {
           />
         </View>
         {!refreshing && (
-          <View className="h-[600]">
+          <View
+            style={{
+              height: webviewHeight,
+              borderColor: "#ff00ff",
+            }}
+          >
             <WebView
               nestedScrollEnabled
               source={{
@@ -139,7 +149,10 @@ export default function Preview({ navigation }: any) {
                   "https://en.wikipedia.org/wiki/HTTP_404",
               }}
               key={key}
-              style={{ marginTop: Platform.OS === "ios" ? 20 : 30 }}
+              style={{
+                marginTop: Platform.OS === "ios" ? 20 : 30,
+                height: webviewHeight,
+              }}
             />
           </View>
         )}
