@@ -70,10 +70,7 @@ export default function Preview({ navigation }: any) {
       console.log("GENERATING PAGE", template);
 
       setHtml(newHtml);
-      const fileUrl = await writeHTMLFile(
-        "test.html",
-        newHtml
-      );
+      const fileUrl = await writeHTMLFile("test.html", newHtml);
       const updateUser = {
         name: profileInfoRedux.name,
         image: profileInfoRedux.photo,
@@ -89,7 +86,7 @@ export default function Preview({ navigation }: any) {
         showMessage({
           message: "Não foi possível criar seu resume...",
           description: "Tente novamente mais tarde",
-          type: "warning"
+          type: "warning",
         });
       }
     } catch (e) {
@@ -135,8 +132,11 @@ export default function Preview({ navigation }: any) {
         {!refreshing && (
           <View className="h-[600]">
             <WebView
+              nestedScrollEnabled
               source={{
-                uri: profileInfoRedux.pdfLink || "https://en.wikipedia.org/wiki/HTTP_404",
+                uri:
+                  profileInfoRedux.pdfLink ||
+                  "https://en.wikipedia.org/wiki/HTTP_404",
               }}
               key={key}
               style={{ marginTop: Platform.OS === "ios" ? 20 : 30 }}
