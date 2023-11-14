@@ -1,6 +1,7 @@
 {
   "cli": {
-    "version": ">= 5.5.0"
+    "version": ">= 5.5.0",
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
@@ -8,9 +9,24 @@
       "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://server.my-resume-app.com/",
+        "EXPO_PUBLIC_S3_BUCKET_URL": "https://iresume-staging.s3.us-east-2.amazonaws.com/",
+        "EXPO_PUBLIC_S3_POLICY_ENDPOINT": "politica/privacyPolicy.html"
+      },
+      "android": {
+        "buildType": "apk"
+      }
     },
-    "production": {}
+    "production": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://server.my-resume-app.com/",
+        "EXPO_PUBLIC_S3_BUCKET_URL": "https://iresume-staging.s3.us-east-2.amazonaws.com/",
+        "EXPO_PUBLIC_S3_POLICY_ENDPOINT": "politica/privacyPolicy.html"
+      }
+    }
   },
   "submit": {
     "production": {}

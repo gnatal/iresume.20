@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Resume</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .section {
+      display: flex;
+      display: -webkit-box;
+      margin-bottom: 30px;
+      justify-content: space-between;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h2 {
+      padding-bottom: 5px;
+      color: #555;
+    }
+
+    .section ul {
+      list-style-type: none;
+      padding: 0;
+      margin-left: 20px;
+    }
+
+    .section li {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .section .title {
+      font-weight: bold;
+    }
+
+    .section .subtitle {
+      color: #888;
+    }
+
+    .section .date {
+      float: right;
+      color: #888;
+    }
+
+    .profile-pic {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      object-fit: cover;
+    }
+
+    .skills {
+      margin-top: 20px;
+      margin-left: 40px;
+    }
+
+    .skill {
+      margin-bottom: 10px;
+    }
+
+    .skill-label {
+      display: inline-block;
+      width: 100px;
+      font-weight: bold;
+    }
+
+    .section-header {
+      width: 100px;
+      border-right: 1px solid;
+      font-size: 18px;
+    }
+
+    .skill-bar {
+      width: 200px;
+      height: 10px;
+      background-color: #ccc;
+      border-radius: 5px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 10px;
+    }
+
+    .skill-level {
+      height: 100%;
+      border-radius: 5px;
+      background-color: #555;
+    }
+
+    .task-list {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Resume</h1>
+
+  <div class="section">
+    <img src="https://picsum.photos/200/300" alt="Profile Picture" class="profile-pic">
+    <div>
+      <h2>Personal Information</h2>
+      <ul>
+        <li><span class="title">Name:</span> John Doe</li>
+        <li><span class="title">Email:</span> john.doe@example.com</li>
+        <li><span class="title">Phone:</span> (123) 456-7890</li>
+        <li><span class="title">Address:</span> 123 Main Street, City, State, ZIP</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Education</h2>
+    <ul>
+      <li>
+        <span class="title">Bachelor of Science, Computer Science</span>
+        <span class="subtitle">University of XYZ</span>
+        <span class="date">Graduated May 20XX</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Experience</h2>
+    <ul>
+      <li>
+        <span class="title">Software Developer</span>
+        <span class="subtitle">ABC Company</span>
+        <span class="date">Jan 20XX - Present</span>
+        <ul class="task-list">
+          <li>Developed web applications using HTML, CSS, and JavaScript.</li>
+          <li>Collaborated with cross-functional teams to deliver high-quality software.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section-header">Skills</h2>
+    <div class="skills">
+      <div class="skill">
+        <span class="skill-label">HTML:</span>
+        <div class="skill-bar">
+          <div class="skill-level" "></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span class="skill-label">CSS:</span>
+        <div class="skill-bar">
+          <div class="skill-level" ></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span class="skill-label">JavaScript:</span>
+        <div class="skill-bar">
+          <div class="skill-level"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <span class="skill-label">Python:</span>
+        <div class="skill-bar">
+          <div class="skill-level"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
