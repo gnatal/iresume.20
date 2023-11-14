@@ -68,6 +68,7 @@ function NewPassword({ navigation }: any) {
                   secureTextEntry={true}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
+                  autoCapitalize="none"
                 />
               )}
             />
@@ -95,6 +96,7 @@ function NewPassword({ navigation }: any) {
                   secureTextEntry={true}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
+                  autoCapitalize="none"
                 />
               )}
             />

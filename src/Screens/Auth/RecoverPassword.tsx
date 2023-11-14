@@ -63,6 +63,7 @@ function RecoverPassword({ navigation }: any) {
                   placeholder="Email"
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
+                  autoCapitalize="none"
                 />
               )}
             />
