@@ -1,12 +1,20 @@
 import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
-import { Text, View, TouchableOpacity, Image, Platform, TextInput, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  Platform,
+  TextInput,
+  ScrollView,
+} from "react-native";
 import { newPassWithToken } from "../../Services/newPasswordWithToken";
 import * as yup from "yup";
 
 const newPasswordSchema = yup.object().shape({
-  token:yup.string().required("Token required"),
+  token: yup.string().required("Token required"),
   password: yup.string().required().min(8),
   passwordConfirmation: yup
     .string()
@@ -28,7 +36,13 @@ function NewPassword({ navigation }: any) {
     },
   });
 
-  const handleNewPassword = async ({ token, password }: {token: string, password: string}) => {
+  const handleNewPassword = async ({
+    token,
+    password,
+  }: {
+    token: string;
+    password: string;
+  }) => {
     try {
       const { status, data } = await newPassWithToken(token, password);
       console.log({ status, data });
@@ -42,8 +56,12 @@ function NewPassword({ navigation }: any) {
     }
   };
 
+  const handleCancel = () => {
+    navigation.navigate("Login");
+  };
+
   return (
-    <ScrollView >
+    <ScrollView>
       <View className="flex justify-start items-center w-screen h-screen bg-[#FFFFFF]">
         <View className="mt-10">
           <Image source={require("../../../assets/logo.png")} />
@@ -139,6 +157,14 @@ function NewPassword({ navigation }: any) {
             } shadow-black mt-8 mb-0`}
           >
             <Text className="text-white">Enviar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            className={`h-12 w-4/5 bg-[#009688] justify-center rounded-lg items-center ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black mt-2 mb-0`}
+            onPress={handleCancel}
+          >
+            <Text className="text-white">Voltar</Text>
           </TouchableOpacity>
         </View>
       </View>
