@@ -4,7 +4,6 @@ import {
   IProfessionalInfo,
   IProfile,
   ISkillInfo,
-  Languages,
 } from "../../../utils/DataTypes";
 import {
   geenrateLanguage,
