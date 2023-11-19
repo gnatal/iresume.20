@@ -63,6 +63,7 @@ function RecoverPassword({ navigation }: any) {
                   placeholder="Email"
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
+                  autoCapitalize="none"
                 />
               )}
             />
@@ -80,6 +81,17 @@ function RecoverPassword({ navigation }: any) {
           >
             <Text className="text-white">Enviar</Text>
           </TouchableOpacity>
+          <View className="w-4/5 h-18 flex items-center justify-center mt-4 mb-0">
+            <Text
+              className="text-[#1976D2] text-sm text-center"
+              onPress={() => {
+                navigation.navigate("New Password");
+              }}
+            >
+              Já tem o código, clique aqui para mudar sua senha
+            </Text>
+          </View>
+
         </View>
       </View>
     </ScrollView>

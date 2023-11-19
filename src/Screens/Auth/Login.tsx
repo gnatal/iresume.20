@@ -129,6 +129,7 @@ function Login({ navigation }: any) {
                   placeholder="Email"
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
+                  autoCapitalize="none"
                 />
               )}
             />
@@ -156,6 +157,7 @@ function Login({ navigation }: any) {
                   secureTextEntry={true}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
+                  autoCapitalize="none"
                 />
               )}
             />

@@ -131,6 +131,7 @@ function Sign({ navigation }: any) {
                   placeholder="Email"
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
+                  autoCapitalize="none"
                 />
               )}
             />
@@ -158,6 +159,7 @@ function Sign({ navigation }: any) {
                   secureTextEntry={true}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
+                  autoCapitalize="none"
                 />
               )}
             />

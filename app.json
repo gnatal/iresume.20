@@ -4,7 +4,7 @@
     "slug": "myresume",
     "version": "1.1.1",
     "orientation": "portrait",
-    "icon": "./assets/playstore.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -20,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/playstore.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.guilhermenatal.myresume"
