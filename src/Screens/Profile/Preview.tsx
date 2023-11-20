@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Platform,
   Text,
   View,
   RefreshControl,
@@ -40,10 +39,7 @@ export default function Preview({ navigation }: any) {
   const [key, setKey] = useState(0);
   const [template, setTemplate] = useState(0);
   const dispatch = useDispatch<any>();
-
-  const webviewHeight = Dimensions.get("window").height > 600 ? Dimensions.get("window").height * (2 / 3) : Dimensions.get("window").height * (2 / 4);
-
-
+  const webviewHeight = Dimensions.get("window").height > 600 ? Dimensions.get("window").height * (5 / 7) : Dimensions.get("window").height * (2 / 4);
 
   const generateHTMLData = () => {
     return {
@@ -61,7 +57,7 @@ export default function Preview({ navigation }: any) {
   };
 
   useEffect(() => {
-    generateHTMLPage(template);
+    // generateHTMLPage(template);
   }, []);
 
   const generateHTMLPage = async (template = 0) => {
@@ -112,23 +108,41 @@ export default function Preview({ navigation }: any) {
   };
 
   return (
-    <View>
+    <View className="flex flex-column">
       <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      <View className="w-full flex items-center">
-        <Text className="pt-4 text-lg pb-2"> Select your template</Text>
+      <View className="w-full flex items-center mt-10">
         <SelectDropdown
           data={["White Ofice", "Purple day", "Blue sky"]}
           onSelect={(selectedItem, index) => {
-            console.log("SELECTED ITEM AND INDEX", selectedItem, index);
             setTemplate(index);
             generateHTMLPage(index);
           }}
+          defaultButtonText="Selecione um template"
           buttonStyle={{
             width: 400,
             backgroundColor: "#FFF",
             borderRadius: 20,
           }}
+          dropdownStyle={{
+            borderRadius: 20,
+          }}
         />
+      </View>
+      <View className="flex flex-row gap-x-6 mt-4 justify-center items-center">
+        <TouchableOpacity
+          disabled={false}
+          className="w-40 bg-[#42A5F5] rounded-3xl h-8 items-center justify-center"
+          onPress={downloadAsPdf}
+        >
+          <Text className="text-white">Download PDF</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          disabled={false}
+          className="w-40 bg-[#42A5F5] rounded-3xl h-8 items-center justify-center"
+          onPress={() => { Clipboard.setStringAsync(profileInfoRedux.pdfLink) }}
+        >
+          <Text className="text-white">Copiar link</Text>
+        </TouchableOpacity>
       </View>
       <View
         style={{
@@ -146,7 +160,7 @@ export default function Preview({ navigation }: any) {
             }}
             key={key}
             style={{
-              marginTop: Platform.OS === "ios" ? 20 : 30,
+              marginTop: 20,
               height: webviewHeight,
             }}
           />
@@ -157,23 +171,6 @@ export default function Preview({ navigation }: any) {
             </Text>
           </View>
         )}
-      </View>
-      <View className="flex justify-center items-center">
-        <Text
-          className="color-[#0000ff] mt-4 mb-2"
-          onPress={() => {
-            Clipboard.setStringAsync(profileInfoRedux.pdfLink);
-          }}
-        >
-          Link para o arquivo: clique para copiar
-        </Text>
-        <TouchableOpacity
-          disabled={false}
-          className="w-80 bg-[#42A5F5] rounded-3xl h-8 items-center justify-center mb-4"
-          onPress={downloadAsPdf}
-        >
-          <Text className="text-white">Download PDF</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
