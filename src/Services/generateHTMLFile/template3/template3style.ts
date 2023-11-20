@@ -50,6 +50,7 @@ body {
     margin-bottom: 0px;
     font-size: 1.5rem;
     font-family: "Gill Sans" sans-serif;
+    overflow-wrap: break-word;
     font-weight: bold;
     text-decoration: underline;
     padding: 5px;
@@ -95,6 +96,7 @@ body {
 
 .section-header {
     font-size: 1.5rem;
+    margin: 10px;
 }
 
 .education-title {
