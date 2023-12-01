@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { deleteProfessional } from "../../store/professionalInfoReducer";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import i18n from "../../i18n/i18n";
 
 const Box = ({ className = "", ...props }) => (
   <View
@@ -33,6 +34,9 @@ const ProfessionalInfo: React.FC<IProfessionalProps> = ({
   const { isLoading } = useSelector(
     (state: RootState) => state.professionalinfo
   );
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage)
+  const t = i18n.t
 
   if (isLoading) {
     infoToRender.push(
@@ -84,7 +88,7 @@ const ProfessionalInfo: React.FC<IProfessionalProps> = ({
       infoToRender.push(
         <Box key={0} className={lastItemClassName}>
           <TextFields className="text-xl text-center my-4">
-            Adicione uma experiência
+            {t("AddProfessionalInfo")}
           </TextFields>
         </Box>
       );
@@ -99,7 +103,7 @@ const ProfessionalInfo: React.FC<IProfessionalProps> = ({
     >
       <View className="w-full py-2 bg-[#0D47A1] rounded-t-xl">
         <TextFields className="text-xl text-white text-center">
-          Experiência Profissional
+          {t("ProfessionalHeader")}
         </TextFields>
       </View>
       <View className="flex flex-row">

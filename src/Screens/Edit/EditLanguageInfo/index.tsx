@@ -20,6 +20,7 @@ import {
 } from "../../../store/languageInfoReducer";
 import Slider from "@react-native-community/slider";
 import { useDebouncedCallback } from "use-debounce";
+import i18n from "../../../i18n/i18n";
 
 function EditLanguageInfo({ route, navigation }: any) {
   const languageInfoRedux = useSelector(
@@ -27,6 +28,9 @@ function EditLanguageInfo({ route, navigation }: any) {
   );
   const dispatch = useDispatch<any>();
   const [errorMessage, setError] = useState("");
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage)
+  const t = i18n.t
   // Get the info ID from route params
   const infoID: Number = route.params?.infoID || -1;
   // Fetch info from global example array, if exist
@@ -102,7 +106,7 @@ function EditLanguageInfo({ route, navigation }: any) {
         <View className="w-4/5 pb-10 mb-10 mt-10 border-2 items-center border-solid shadow-xl rounded-xl bg-[#F5F5F5] border-[#9FC0C7] shadow-black">
           <View className="w-80 rounded-3xl h-14 flex items-center justify-center my-2">
             <Text className="text-black text-lg">
-              {infoID == -1 && "Nova "}Proficiência Linguística
+              {t("EditLanguageInfo.title")}
             </Text>
           </View>
           {/* Graduation */}
@@ -192,7 +196,7 @@ function EditLanguageInfo({ route, navigation }: any) {
             } shadow-black mt-8 mb-0`}
             onPress={handleSubmit(debouncedEditLanguage)}
           >
-            <Text className="text-white">Salvar</Text>
+            <Text className="text-white">{t("Salvar")}</Text>
           </TouchableOpacity>
           {errorMessage != "" && (
             <Text className="text-[#c3a040] mb-2 mt-2">*{errorMessage}</Text>
@@ -204,7 +208,7 @@ function EditLanguageInfo({ route, navigation }: any) {
             } shadow-black mt-2 mb-0`}
             onPress={debouncedCancel}
           >
-            <Text className="text-white">Cancelar</Text>
+            <Text className="text-white">{t("Cancelar")}</Text>
           </TouchableOpacity>
         </View>
       </View>

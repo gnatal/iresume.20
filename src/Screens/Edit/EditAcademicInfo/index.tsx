@@ -19,6 +19,7 @@ import {
   updateAcademic,
 } from "../../../store/academicInfoReducer";
 import { useDebouncedCallback } from "use-debounce";
+import i18n from "../../../i18n/i18n";
 
 function EditAcademicInfo({ route, navigation }: any) {
   const academicInfoRedux = useSelector(
@@ -26,6 +27,9 @@ function EditAcademicInfo({ route, navigation }: any) {
   );
   const dispatch = useDispatch<any>();
   const [errorMessage, setError] = useState("");
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage)
+  const t = i18n.t
   // Get the info ID from route params
   const infoID: Number = route.params?.infoID || -1;
   // Fetch info from global example array, if exist
@@ -131,7 +135,7 @@ function EditAcademicInfo({ route, navigation }: any) {
         <View className="w-4/5 pb-10 mb-10 mt-10 border-2 items-center border-solid shadow-xl rounded-xl bg-[#F5F5F5] border-[#9FC0C7] shadow-black">
           <View className="w-80 rounded-3xl h-14 flex items-center justify-center my-2">
             <Text className="text-black text-lg">
-              {infoID == -1 && "Nova "}Experiência acadêmica
+              {t("EditAcademicInfo.title")}
             </Text>
           </View>
           {/* Graduation */}
@@ -149,7 +153,7 @@ function EditAcademicInfo({ route, navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black text-center"
-                  placeholder="Graduação - Especialização"
+                  placeholder={t("EditAcademicInfo.graduation")}
                   placeholderTextColor="#9E9E9E"
                   defaultValue={info?.graduation}
                   onChangeText={onChange}
@@ -178,7 +182,7 @@ function EditAcademicInfo({ route, navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black text-center"
-                  placeholder="Instituição"
+                  placeholder={t("EditAcademicInfo.institution")}
                   placeholderTextColor="#9E9E9E"
                   defaultValue={info?.institution}
                   onChangeText={onChange}
@@ -194,7 +198,7 @@ function EditAcademicInfo({ route, navigation }: any) {
           {/* Start Date Fields */}
           <View className="w-4/5">
             <View className="flex-row w-4/5 mt-4 mb-2">
-              <Text>Data de início</Text>
+              <Text>{t("EditAcademicInfo.startDate")}</Text>
             </View>
             <View className="flex-row w-4/5">
               {/* Start Month */}
@@ -213,7 +217,7 @@ function EditAcademicInfo({ route, navigation }: any) {
                     <TextInput
                       keyboardType="numeric"
                       className="h-10 text-black text-center"
-                      placeholder="Mês"
+                      placeholder={t("Month")}
                       placeholderTextColor="#9E9E9E"
                       defaultValue={
                         info.startDateMonth != 0
@@ -241,7 +245,7 @@ function EditAcademicInfo({ route, navigation }: any) {
                     <TextInput
                       keyboardType="numeric"
                       className="h-10 text-black text-center"
-                      placeholder="Ano"
+                      placeholder={t("Year")}
                       placeholderTextColor="#9E9E9E"
                       defaultValue={
                         info.startDateYear != 0
@@ -282,13 +286,13 @@ function EditAcademicInfo({ route, navigation }: any) {
                 />
               )}
             />
-            <Text>Sem previsão de término</Text>
+            <Text>{t("EditAcademicInfo.stillWorkHere")}</Text>
           </View>
           {/* End Date fields */}
           {!isChecked && (
             <View className="w-4/5">
               <View className="flex-row w-4/5 mt-4 mb-2">
-                <Text>Data de término</Text>
+                <Text>{t("EditAcademicInfo.endDate")}</Text>
               </View>
               <View className="flex-row w-4/5">
                 {/* End Month */}
@@ -307,7 +311,7 @@ function EditAcademicInfo({ route, navigation }: any) {
                       <TextInput
                         keyboardType="numeric"
                         className="h-10 text-black text-center"
-                        placeholder="Mês"
+                        placeholder={t("Month")}
                         placeholderTextColor="#9E9E9E"
                         defaultValue={
                           info.endDateMonth != 0
@@ -335,7 +339,7 @@ function EditAcademicInfo({ route, navigation }: any) {
                       <TextInput
                         keyboardType="numeric"
                         className="h-10 text-black text-center"
-                        placeholder="Ano"
+                        placeholder={t("Year")}
                         placeholderTextColor="#9E9E9E"
                         defaultValue={
                           info.endDateYear != 0
@@ -378,7 +382,7 @@ function EditAcademicInfo({ route, navigation }: any) {
                 <TextInput
                   className="h-36 text-black text-center"
                   multiline={true}
-                  placeholder="Descrição"
+                  placeholder={t("EditAcademicInfo.description")}
                   placeholderTextColor="#9E9E9E"
                   defaultValue={info?.description}
                   onChangeText={onChange}
@@ -398,7 +402,7 @@ function EditAcademicInfo({ route, navigation }: any) {
             } shadow-black mt-8 mb-0`}
             onPress={handleSubmit(debouncedEditAcademicInfo)}
           >
-            <Text className="text-white">Salvar</Text>
+            <Text className="text-white">{t("Salvar")}</Text>
           </TouchableOpacity>
           {errorMessage != "" && (
             <Text className="text-[#c3a040] mb-2 mt-2">*{errorMessage}</Text>
@@ -410,7 +414,7 @@ function EditAcademicInfo({ route, navigation }: any) {
             } shadow-black mt-2 mb-0`}
             onPress={debouncedCancelEdit}
           >
-            <Text className="text-white">Cancelar</Text>
+            <Text className="text-white">{t("Cancelar")}</Text>
           </TouchableOpacity>
         </View>
       </View>
