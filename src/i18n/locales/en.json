@@ -1,0 +1,142 @@
+{
+  "translation": {
+    "__YUP__": "__YUP__",
+    "yupInvalidMonthMsg": "Add a valid month",
+    "yupInvalidYearMsg": "Add a valid year",
+    "yupGraduationMsg": "Adicione uma graduação",
+    "yupInstitutionMsg": "Adicione uma Instituição de ensino",
+    "yupOcupationMsg": "Adicione um cargo",
+    "yupCompanyMsg": "Adicione uma empresa",
+    "yupDescriptionMsg": "Adicione uma descrição",
+    "yupLanguageMsg": "Selecione uma linguagem",
+    "yupProficiencyMsg": "Adicione uma prociciência",
+    "yupSkillMsg": "Add a skill",
+    "yupSomethingWrongMsg": "Algo deu errado",
+    "yupOldPasswordRequiredMsg": "Informe sua senha antiga",
+    "yupNewPasswordRequiredMsg": "Informe sua nova senha",
+    "yupConfirmPasswordMsg": "As senhas não correspondem",
+
+    "__UTILS__": "__UTILS__",
+    "emailRequired": "Email is required",
+    "passwordRequired": "Password is required",
+    "passwordMatchRequired": "Passwords don't match",
+    "Loading": "Loading",
+    "Email": "Email",
+    "Month": "Month",
+    "Year": "Year",
+    "MonthError": "Add a valid month",
+    "YearError": "Add a valid year",
+    "Voltar": "Back",
+
+    "__LoginScreen__": "__LoginScreen__",
+
+    "Senha": "Password",
+    "Entrar": "Login",
+    "Criar conta": "Create account",
+    "Esqueceu sua senha?": "Forgot your password?",
+
+    "__PolicyLink__": "__PolicyLink__",
+
+    "Leia nossas": "Read ours",
+    "Política de privacidade": "Privacy's policy",
+
+    "__SignupScreen__": "__SignupScreen__",
+
+    "Abstract": "Create an account to generate your resume in PDF and HTML, totally free.",
+    "Confirme sua senha": "Confirm your password",
+    "Cadastrar": "Register",
+    "Cancelar": "Cancel",
+
+    "__RecoverPassword__": "__RecoverPassword__",
+    "RecoverMessage": "Forgot your password?\nInform your email to recover it",
+    "Enviar": "Send",
+    "Já tem o código": "Already have the code, click here to change your password",
+
+    "__NewPassword__": "__NewPassword__",
+    "informe sua nova senha": "Inform your new password",
+    "Confirmar senha": "Confirm your password",
+
+    "__EditProfileScreen__": "__EditProfileScreen__",
+
+    "Informações de contato": "Contact information",
+    "Nome": "Name",
+    "Telefone": "Phone",
+    "Endereço": "Address",
+    "Descrição": "Description",
+    "Salvar": "Save",
+
+    "nameRequired": "Name is required",
+    "phoneRequired": "Phone is required",
+
+    "__AcademicInfo__": "__AcademicInfo__",
+
+    "AcademicHeader": "Academic Experience",
+    "AddAcademicInfo": "Add your academic information",
+
+    "__EditAcademicInfo__": "__EditAcademicInfo__",
+    "EditAcademicInfo.title": "Academic Experience",
+    "EditAcademicInfo.graduation": "Graduation - Specialization",
+    "EditAcademicInfo.institution": "Institution",
+    "EditAcademicInfo.startDate": "Start Date",
+    "EditAcademicInfo.endDate": "End Date",
+    "EditAcademicInfo.description": "Description",
+    "EditAcademicInfo.stillWorkHere": "Still working here",
+
+    "EditAcademicInfo.graduationError": "Add a graduation",
+    "EditAcademicInfo.institutionError": "Add an institution of education",
+    "EditAcademicInfo.descriptionError": "Add a description",
+
+    "__ProfessionalInfo__": "__ProfessionalInfo__",
+    "ProfessionalHeader": "Professional Experience",
+    "AddProfessionalInfo": "Add your professional information",
+
+    "__EditProfessionalInfo__": "__EditProfessionalInfo__",
+    "EditProfessionalInfo.title": "Professional Experience",
+    "EditProfessionalInfo.role": "Role",
+    "EditProfessionalInfo.company": "Company",
+    "EditProfessionalInfo.startDate": "Start Date",
+    "EditProfessionalInfo.endDate": "End Date",
+    "EditProfessionalInfo.description": "Description",
+    "EditProfessionalInfo.stillWorkHere": "Still working here",
+
+    "EditProfessionalInfo.roleError": "Add a role",
+    "EditProfessionalInfo.companyError": "Add a company",
+    "EditProfessionalInfo.descriptionError": "Add a description",
+
+    "__LanguageInfo__": "__LanguageInfo__",
+    "LanguageHeader": "Proficiency in Languages",
+    "AddLanguageInfo": "Add a language",
+
+    "__EditLanguageInfo__": "__EditLanguageInfo__",
+    "EditLanguageInfo.title": "Proficiency in Languages",
+
+    "__SkillInfo__": "__SkillInfo__",
+    "SkillHeader": "Skills",
+    "AddSkillInfo": "Add a skill",
+
+    "__EditSkillInfo__": "__EditSkillInfo__",
+    "EditSkillInfo.title": "Skill",
+    "EditSkillInfo.placeholder": "Skill",
+    "EditSkillInfo.error": "Add a skill",
+
+    "__MenuScreen__": "__MenuScreen__",
+    "menu.policy": "Privacy's policy",
+    "menu.changePassword": "Change password",
+    "menu.deleteAccount": "Delete account",
+    "menu.logout": "Logout",
+    "menu.title": "Menu",
+
+    "__ChangePassword__": "__ChangePassword__",
+    "informeAtualSenha": "Inform your current password",
+    "informeNovaSenha": "Inform your new password",
+    "confirmeNovaSenha": "Confirm your new password",
+    "Senhaatual": "Current password",
+    "Senhanova": "New password",
+    "alterarSenha": "Change password",
+
+    "__DeleteAccount__": "__DeleteAccount__",
+    "deleteText": "Are you sure you want to delete your account?",
+    "sim": "Yes",
+    "nao": "No"
+  }
+}

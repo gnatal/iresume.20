@@ -1,0 +1,142 @@
+{
+  "translation": {
+    "__YUP__": "__YUP__",
+    "yupInvalidMonthMsg": "Adicione um mês válido",
+    "yupInvalidYearMsg": "Adicione um ano válido",
+    "yupGraduationMsg": "Adicione uma graduação",
+    "yupInstitutionMsg": "Adicione uma Instituição de ensino",
+    "yupOcupationMsg": "Adicione um cargo",
+    "yupCompanyMsg": "Adicione uma empresa",
+    "yupDescriptionMsg": "Adicione uma descrição",
+    "yupLanguageMsg": "Selecione uma linguagem",
+    "yupProficiencyMsg": "Adicione uma prociciência",
+    "yupSkillMsg": "Selecione uma habilidade",
+    "yupSomethingWrongMsg": "Algo deu errado",
+    "yupOldPasswordRequiredMsg": "Informe sua senha antiga",
+    "yupNewPasswordRequiredMsg": "Informe sua nova senha",
+    "yupConfirmPasswordMsg": "As senhas não correspondem",
+
+    "__UTILS__": "__UTILS__",
+    "emailRequired": "Email é obrigatório",
+    "passwordRequired": "Senha é obrigatório",
+    "passwordMatchRequired": "As senhas não conferem",
+    "Loading": "Aguarde",
+    "Email": "Email",
+    "Month": "Mês",
+    "Year": "Ano",
+    "MonthError": "Adicione um mês válido",
+    "YearError": "Adicione um ano válido",
+    "Voltar": "Voltar",
+
+    "__LoginScreen__": "__LoginScreen__",
+
+    "Senha": "Senha",
+    "Entrar": "Entrar",
+    "Criar conta": "Criar conta",
+    "Esqueceu sua senha?": "Esqueceu sua senha?",
+
+    "__PolicyLink__": "__PolicyLink__",
+
+    "Leia nossas": "Leia nossas",
+    "Política de privacidade": "Política de privacidade",
+
+    "__SignupScreen__": "__SignupScreen__",
+
+    "Abstract": "Crie uma conta para gerar seu currículo formatado em PDF e HTML, totalmente gratuito.",
+    "Confirme sua senha": "Confirme sua senha",
+    "Cadastrar": "Cadastrar",
+    "Cancelar": "Cancelar",
+
+    "__RecoverPassword__": "__RecoverPassword__",
+    "RecoverMessage": "Perdeu sua senha?\nInforme seu e-mail para recuperá-la",
+    "Enviar": "Enviar",
+    "Já tem o código": "Já tem o código, clique aqui para mudar sua senha",
+
+    "__NewPassword__": "__NewPassword__",
+    "informe sua nova senha": "informe sua nova senha",
+    "Confirmar senha": "Confirmar senha",
+
+    "__EditProfileScreen__": "__EditProfileScreen__",
+
+    "Informações de contato": "Informações de contato",
+    "Nome": "Nome",
+    "Telefone": "Telefone",
+    "Endereço": "Endereço",
+    "Descrição": "Descrição",
+    "Salvar": "Salvar",
+
+    "nameRequired": "Nome é obrigatório",
+    "phoneRequired": "Telefone é obrigatório",
+
+    "__AcademicInfo__": "__AcademicInfo__",
+
+    "AcademicHeader": "Experiência Acadêmica",
+    "AddAcademicInfo": "Adicione uma experiência",
+
+    "__EditAcademicInfo__": "__EditAcademicInfo__",
+    "EditAcademicInfo.title": "Experiência Acadêmica",
+    "EditAcademicInfo.graduation": "Graduação - Especialização",
+    "EditAcademicInfo.institution": "Instituição",
+    "EditAcademicInfo.startDate": "Data de Início",
+    "EditAcademicInfo.endDate": "Data de Fim",
+    "EditAcademicInfo.description": "Descrição",
+    "EditAcademicInfo.stillWorkHere": "Sem previsão de término",
+
+    "EditAcademicInfo.graduationError": "Adicione uma graduação",
+    "EditAcademicInfo.institutionError": "Adicione uma instituição de ensino",
+    "EditAcademicInfo.descriptionError": "Adicione uma descrição",
+
+    "__ProfessionalInfo__": "__ProfessionalInfo__",
+    "ProfessionalHeader": "Experiência Profissional",
+    "AddProfessionalInfo": "Adicione uma experiência",
+
+    "__EditProfessionalInfo__": "__EditProfessionalInfo__",
+    "EditProfessionalInfo.title": "Experiência Profissional",
+    "EditProfessionalInfo.role": "Cargo",
+    "EditProfessionalInfo.company": "Empresa",
+    "EditProfessionalInfo.startDate": "Data de Início",
+    "EditProfessionalInfo.endDate": "Data de Fim",
+    "EditProfessionalInfo.description": "Descrição",
+    "EditProfessionalInfo.stillWorkHere": "Sem previsão de término",
+
+    "EditProfessionalInfo.roleError": "Adicione um cargo",
+    "EditProfessionalInfo.companyError": "Adicione uma empresa",
+    "EditProfessionalInfo.descriptionError": "Adicione uma descrição",
+
+    "__LanguageInfo__": "__LanguageInfo__",
+    "LanguageHeader": "Proficiência Linguística",
+    "AddLanguageInfo": "Adicione um idioma",
+
+    "__EditLanguageInfo__": "__EditLanguageInfo__",
+    "EditLanguageInfo.title": "Proficiência Linguística",
+
+    "__SkillInfo__": "__SkillInfo__",
+    "SkillHeader": "Habilidades",
+    "AddSkillInfo": "Adicione uma habilidade",
+
+    "__EditSkillInfo__": "__EditSkillInfo__",
+    "EditSkillInfo.title": "Habilidade",
+    "EditSkillInfo.placeholder": "Habilidade",
+    "EditSkillInfo.error": "Adicione uma habilidade",
+
+    "__MenuScreen__": "__MenuScreen__",
+    "menu.policy": "Política de privacidade",
+    "menu.changePassword": "Mudar senha",
+    "menu.deleteAccount": "Excluir conta",
+    "menu.logout": "Sair",
+    "menu.title": "Menu",
+
+    "__ChangePassword__": "__ChangePassword__",
+    "informeAtualSenha": "Informe a atual senha",
+    "informeNovaSenha": "Informe a nova senha",
+    "confirmeNovaSenha": "Confirme a nova senha",
+    "Senhaatual": "Senha atual",
+    "Senhanova": "Nova senha",
+    "alterarSenha": "Alterar",
+
+    "__DeleteAccount__": "__DeleteAccount__",
+    "deleteText": "Tem certeza que deseja excluir sua conta?",
+    "sim": "Sim",
+    "nao": "Não"
+  }
+}
