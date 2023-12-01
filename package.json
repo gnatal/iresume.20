@@ -34,6 +34,7 @@
     "react-hook-form": "^7.47.0",
     "react-i18next": "^13.5.0",
     "react-native": "0.72.6",
+    "react-native-flag-creator": "^1.0.4",
     "react-native-flash-message": "^0.4.2",
     "react-native-gesture-handler": "~2.12.0",
     "react-native-progress-wheel": "^2.1.0",
