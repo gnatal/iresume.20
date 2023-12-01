@@ -8,7 +8,7 @@ import {
   Image,
   Platform,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUserLogin } from "../../store/loginReducer";
 import { sendLoginRequest } from "../../Services/sendLoginRequest";
 import { useForm, Controller } from "react-hook-form";
@@ -18,6 +18,9 @@ import * as yup from "yup";
 import { showMessage } from "react-native-flash-message";
 import PolicyLink from "../../Components/Basics/PolicyLink";
 import { useDebouncedCallback } from "use-debounce";
+import { setLanguage } from "../../store/appLanguage";
+import i18n from "../../i18n/i18n";
+import { CountryFlag } from "react-native-flag-creator";
 
 const loginSchema = yup.object().shape({
   email: yup.string().email().required(),
@@ -27,6 +30,9 @@ const loginSchema = yup.object().shape({
 function Login({ navigation }: any) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage);
+  const t = i18n.t;
 
   const {
     control,
@@ -126,7 +132,7 @@ function Login({ navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black"
-                  placeholder="Email"
+                  placeholder={t("Email")}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
                   autoCapitalize="none"
@@ -153,7 +159,7 @@ function Login({ navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black"
-                  placeholder="Senha"
+                  placeholder={t("Senha")}
                   secureTextEntry={true}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
@@ -173,7 +179,7 @@ function Login({ navigation }: any) {
             } shadow-black mt-8 mb-0`}
             onPress={handleSubmit(debouncedLogin)}
           >
-            <Text className="text-white">Entrar</Text>
+            <Text className="text-white">{t("Entrar")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             className={`h-12 w-4/5 bg-[#009688] justify-center rounded-lg items-center ${
@@ -183,7 +189,7 @@ function Login({ navigation }: any) {
               navigation.navigate("Signup");
             }}
           >
-            <Text className="text-white">Criar nova conta</Text>
+            <Text className="text-white">{t("Criar conta")}</Text>
           </TouchableOpacity>
           <View className="w-80 h-18 flex items-center justify-center mt-4 mb-0">
             <Text
@@ -192,9 +198,46 @@ function Login({ navigation }: any) {
                 navigation.navigate("Password Recovery");
               }}
             >
-              Recuperar senha
+              {t("Esqueceu sua senha?")}
             </Text>
             <PolicyLink />
+          </View>
+          <View className="flex-row">
+            <TouchableOpacity
+              className={`h-6 w-6 m-2 bg-[#42A5F5] justify-center rounded-lg items-center ${
+                Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+              } shadow-black mt-6 mb-0`}
+              //onpress switch between en and pt
+              onPress={() => dispatch(setLanguage("pt"))}
+            >
+              <CountryFlag
+                countryCode="br"
+                style={{
+                  height: 35,
+                  width: 35,
+                  borderRadius: 20,
+                  backgroundColor: "gray",
+                }}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              className={`h-6 w-6 m-2 bg-[#42A5F5] justify-center rounded-lg items-center ${
+                Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+              } shadow-black mt-6 mb-0`}
+              //onpress switch between en and pt
+              onPress={() => dispatch(setLanguage("en"))}
+            >
+              <CountryFlag
+                countryCode="us"
+                style={{
+                  height: 35,
+                  width: 35,
+                  borderRadius: 20,
+                  backgroundColor: "gray",
+                }}
+              />
+            </TouchableOpacity>
+            
           </View>
         </View>
       </View>
