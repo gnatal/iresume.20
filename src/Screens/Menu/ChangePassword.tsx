@@ -6,10 +6,15 @@ import { TextInput } from "react-native-gesture-handler";
 import { ChangePasswordSchema } from "../../Components/Yup/Schemas";
 import { sendChangePasswordRequest } from "../../Services/sendChangePasswordRequest";
 import { showMessage } from "react-native-flash-message";
+import { useSelector } from "react-redux";
+import i18n from "../../i18n/i18n";
 
 
 export default function ChangePassword({ navigation }: any) {
   const [loading, setLoading] = useState<boolean>(false);
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage);
+  const t = i18n.t;
 
   const {
     control,
@@ -47,7 +52,7 @@ export default function ChangePassword({ navigation }: any) {
     <ScrollView className="bg-[#f2f2f2]">
       <View className="flex justify-start items-center w-screen h-screen bg-[#f2f2f2]">
         <View className="bg-[#F5F5F5] w-4/5 pb-10 mt-36 border-2 items-center border-solid  rounded-xl border-[#9FC0C7] shadow-xl shadow-black">
-          <Text className="w-4/5 my-8 text-center text-lg">Informe sua senha atual</Text>
+          <Text className="w-4/5 my-8 text-center text-lg">{t("informeAtualSenha")}</Text>
           <View
             className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
               } shadow-black px-2 justify-center h-12 mb-2 mt-2`}
@@ -61,7 +66,7 @@ export default function ChangePassword({ navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black"
-                  placeholder="Senha atual"
+                  placeholder={t("Senhaatual")}
                   secureTextEntry={true}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
@@ -74,7 +79,7 @@ export default function ChangePassword({ navigation }: any) {
               {errors?.oldPassword?.message}
             </Text>
           )}
-          <Text className="w-4/5 my-8 text-center text-lg">Informe uma nova senha</Text>
+          <Text className="w-4/5 my-8 text-center text-lg">{t("informeNovaSenha")}</Text>
           <View
             className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
               } shadow-black px-2 justify-center h-12 mb-2 mt-2`}
@@ -88,7 +93,7 @@ export default function ChangePassword({ navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black"
-                  placeholder="Nova senha"
+                  placeholder={t("Senhanova")}
                   secureTextEntry={true}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
@@ -114,7 +119,7 @@ export default function ChangePassword({ navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black"
-                  placeholder="Confirme a senha"
+                  placeholder={t("confirmeNovaSenha")}
                   secureTextEntry={true}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
@@ -133,7 +138,7 @@ export default function ChangePassword({ navigation }: any) {
               } shadow-black`}
             onPress={handleSubmit(handleChangePassword)}
           >
-            <Text className="text-white">ALTERAR</Text>
+            <Text className="text-white">{t("alterarSenha")}</Text>
             {loading && (
               <ActivityIndicator className="absolute right-4" size="large" color="white" />
             )}
@@ -144,7 +149,7 @@ export default function ChangePassword({ navigation }: any) {
               } shadow-black`}
             onPress={() => { navigation.goBack() }}
           >
-            <Text className="text-white">CANCELAR</Text>
+            <Text className="text-white">{t("Cancelar")}</Text>
           </TouchableOpacity>
         </View>
       </View>

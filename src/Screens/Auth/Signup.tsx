@@ -7,7 +7,7 @@ import {
   Image,
   Platform,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUserLogin } from "../../store/loginReducer";
 import { sendSignupRequest } from "../../Services/sendSignupRequest";
 import { useForm, Controller } from "react-hook-form";
@@ -18,6 +18,7 @@ import { KeyboardAvoidingView } from "react-native";
 import PolicyLink from "../../Components/Basics/PolicyLink";
 import { showMessage } from "react-native-flash-message";
 import { useDebouncedCallback } from "use-debounce";
+import i18n from "../../i18n/i18n";
 
 const signupSchema = yup.object().shape({
   email: yup.string().email().required(),
@@ -30,6 +31,9 @@ const signupSchema = yup.object().shape({
 function Sign({ navigation }: any) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage);
+  const t = i18n.t;
 
   const {
     control,
@@ -110,8 +114,7 @@ function Sign({ navigation }: any) {
         <View className="bg-[#F5F5F5] w-4/5 pb-6 mt-10 border-2 items-center border-solid  rounded-xl border-[#9FC0C7] shadow-xl shadow-black">
           <View className="w-4/5 text-black px-2 items-center mb-2 mt-8">
             <Text className="text-black mb-2  text-center">
-              Crie uma conta para gerar seu currículo formatado em PDF e HTML,
-              totalmente gratuito.
+              {t("Abstract")}
             </Text>
           </View>
           <View
@@ -128,7 +131,7 @@ function Sign({ navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black"
-                  placeholder="Email"
+                  placeholder={t("Email")}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
                   autoCapitalize="none"
@@ -155,7 +158,7 @@ function Sign({ navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black"
-                  placeholder="Senha"
+                  placeholder={t("Senha")}
                   secureTextEntry={true}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
@@ -183,7 +186,7 @@ function Sign({ navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black"
-                  placeholder="Confirme sua senha"
+                  placeholder={t("Confirme sua senha")}
                   secureTextEntry={true}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
@@ -202,7 +205,7 @@ function Sign({ navigation }: any) {
             } shadow-black mt-8 mb-0`}
             onPress={handleSubmit(debouncedSignup)}
           >
-            <Text className="text-white">Criar</Text>
+            <Text className="text-white">{t("Cadastrar")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             className={`h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center ${
@@ -210,7 +213,7 @@ function Sign({ navigation }: any) {
             } shadow-black mt-2 mb-0`}
             onPress={handleCancel}
           >
-            <Text className="text-white">Voltar</Text>
+            <Text className="text-white">{t("Cancelar")}</Text>
           </TouchableOpacity>
           <PolicyLink />
         </View>

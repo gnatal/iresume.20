@@ -20,12 +20,16 @@ import {
 } from "../../../store/skillInfoReducer";
 import Slider from "@react-native-community/slider";
 import { useDebouncedCallback } from "use-debounce";
+import i18n from "../../../i18n/i18n";
 
 
 function EditSkillInfo({ route, navigation }: any) {
   const skillInfoRedux = useSelector((state: RootState) => state.skillinfo.sInfoArray);
   const dispatch = useDispatch<any>();
   const [errorMessage, setError] = useState("");
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage)
+  const t = i18n.t
   // Get the info ID from route params
   const infoID: Number = route.params?.infoID || -1;
   // Fetch info from global example array, if exist
@@ -99,7 +103,7 @@ function EditSkillInfo({ route, navigation }: any) {
         <View className="w-4/5 pb-10 mb-10 mt-10 border-2 items-center border-solid shadow-xl rounded-xl bg-[#F5F5F5] border-[#9FC0C7] shadow-black">
           <View className="w-80 rounded-3xl h-14 flex items-center justify-center my-2">
             <Text className="text-black text-lg">
-              {infoID == -1 && "Nova "}Habilidade
+              {t("EditSkillInfo.title")}
             </Text>
           </View>
           {/* Graduation */}
@@ -118,7 +122,7 @@ function EditSkillInfo({ route, navigation }: any) {
                 <View className="items-center justify-center">
                   <TextInput
                     className="h-10 text-black text-center"
-                    placeholder="Habilidade"
+                    placeholder={t("EditSkillInfo.placeholder")}
                     placeholderTextColor="#9E9E9E"
                     defaultValue={info?.skill}
                     onChangeText={onChange}

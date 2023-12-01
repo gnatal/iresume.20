@@ -10,6 +10,7 @@ import { FadePanel } from "../Basics/FadePanel";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAcademic } from "../../store/academicInfoReducer";
 import { RootState } from "../../store";
+import i18n from "../../i18n/i18n";
 
 const Box = ({ className = "", ...props }) => (
   <View
@@ -30,6 +31,9 @@ const AcademicInfo: React.FC<IAcademicProps> = ({
   const lastItemClassName = "border-b-0";
   const dispatch = useDispatch<any>();
   const { isLoading } = useSelector((state: RootState) => state.academicinfo);
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage)
+  const t = i18n.t
 
   if (isLoading) {
     infoToRender.push(
@@ -76,7 +80,7 @@ const AcademicInfo: React.FC<IAcademicProps> = ({
       infoToRender.push(
         <Box key={0} className={lastItemClassName}>
           <TextFields className="text-xl text-center my-4">
-            Adicione uma experiência
+            {t("AddAcademicInfo")}
           </TextFields>
         </Box>
       );
@@ -91,7 +95,7 @@ const AcademicInfo: React.FC<IAcademicProps> = ({
     >
       <View className="w-full py-2 bg-[#0D47A1] rounded-t-xl">
         <TextFields className="text-xl text-white text-center">
-          Experiência Acadêmica
+          {t("AcademicHeader")}
         </TextFields>
       </View>
       <View className="flex flex-row">
