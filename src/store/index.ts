@@ -5,6 +5,7 @@ import { LanguageInfoReducer } from './languageInfoReducer';
 import { ProfessionalInfoReducer } from './professionalInfoReducer';
 import { SkillInfoReducer } from './skillInfoReducer';
 import { profileInfoReducer } from './profileInfoReducer';
+import { appLanguageReducer } from "./appLanguage";
 
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   professionalinfo: ProfessionalInfoReducer,
   skillinfo: SkillInfoReducer,
   profileinfo: profileInfoReducer,
+  appLanguage: appLanguageReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

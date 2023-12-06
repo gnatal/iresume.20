@@ -9,10 +9,15 @@ import {
 } from "react-native";
 import { showMessage } from "react-native-flash-message";
 import { WebView } from "react-native-webview";
+import { useSelector } from "react-redux";
+import i18n from "../../i18n/i18n";
 
 export default function Policy({ navigation }: any) {
   const [policyPage, setHtml] = useState("<h1>Loading</h1>");
   const [requested, setRequested] = useState(false);
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage);
+  const t = i18n.t;
   useEffect(() => {
     const getHTMLPage = async () => {
       // using boolean to avoid double request
@@ -40,7 +45,7 @@ export default function Policy({ navigation }: any) {
   return (
     <ScrollView className="bg-[#ffffff]">
       <View className="items-center mt-36">
-        <Text className="text-3xl">Política de privacidade</Text>
+        <Text className="text-3xl">{t("Política de privacidade")}</Text>
       </View>
       <View className="h-[500] mt-10">
         <WebView
@@ -56,7 +61,7 @@ export default function Policy({ navigation }: any) {
             } shadow-black`}
           onPress={() => { navigation.goBack() }}
         >
-          <Text className="text-white">Voltar</Text>
+          <Text className="text-white">{t("Voltar")}</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

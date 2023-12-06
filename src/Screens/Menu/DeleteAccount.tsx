@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import { ActivityIndicator, Platform, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { sendDeleteAccountRequest } from "../../Services/sendDeleteAccountRequest";
 import { showMessage } from "react-native-flash-message";
+import { useSelector } from "react-redux";
+import i18n from "../../i18n/i18n";
 
 export default function DeleteAccount({ navigation }: any) {
   const [handlingDelete, setHandlingDelete] = useState(false);
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage);
+  const t = i18n.t;
 
   const handleDeleteAccount = async () => {
     try {
@@ -31,14 +36,14 @@ export default function DeleteAccount({ navigation }: any) {
     <ScrollView className="bg-[#f2f2f2]">
       <View className="flex justify-start items-center w-screen h-screen bg-[#f2f2f2]">
         <View className="bg-[#F5F5F5] w-4/5 pb-10 mt-36 border-2 items-center border-solid  rounded-xl border-[#9FC0C7] shadow-xl shadow-black">
-          <Text className="w-4/5 my-8 text-center text-xl">Certeza de que deseja excluir sua conta e todos os seus dados?</Text>
+          <Text className="w-4/5 my-8 text-center text-xl">{t("deleteText")}</Text>
           <TouchableOpacity
             disabled={handlingDelete}
             className={`h-10 w-4/5 mt-4 bg-[#42A5F5] justify-center rounded-lg items-center ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
               } shadow-black`}
             onPress={handleDeleteAccount}
           >
-            <Text className="text-white">SIM</Text>
+            <Text className="text-white">{t("sim")}</Text>
             {handlingDelete && (
               <ActivityIndicator className="absolute right-4" size="large" color="white" />
             )}
@@ -49,7 +54,7 @@ export default function DeleteAccount({ navigation }: any) {
               } shadow-black`}
             onPress={() => { navigation.goBack() }}
           >
-            <Text className="text-white">NÃO</Text>
+            <Text className="text-white">{t("nao")}</Text>
           </TouchableOpacity>
         </View>
       </View>

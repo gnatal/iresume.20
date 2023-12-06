@@ -25,14 +25,9 @@ import { showMessage } from "react-native-flash-message";
 import { EditButton } from "../../../Components/Basics/EditButtons";
 import * as FileSystem from "expo-file-system";
 import { useDebouncedCallback } from "use-debounce";
+import i18n from "../../../i18n/i18n";
+import { profileSchema } from "../../../Components/Yup/Schemas";
 
-const profileSchema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().email().required(),
-  phone: yup.string().required().min(8),
-  address: yup.string(),
-  description: yup.string(),
-});
 
 function EditProfileInfo({ navigation }: any) {
   const profileInfoRedux = useSelector((state: RootState) => state.profileinfo);
@@ -42,6 +37,10 @@ function EditProfileInfo({ navigation }: any) {
   const debounceEditProfile = useDebouncedCallback((profile: any) => {
     handleEditProfile({ ...profile });
   }, 500);
+
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage)
+  const t = i18n.t
 
   useEffect(() => {
     if (profileInfoRedux?.photo) {
@@ -57,7 +56,7 @@ function EditProfileInfo({ navigation }: any) {
     setValue
   } = useForm({
     mode: "onChange",
-    resolver: yupResolver(profileSchema),
+    resolver: yupResolver(profileSchema(t)),
     defaultValues: {
       name: profileInfoRedux?.name,
       email: profileInfoRedux?.email,
@@ -192,7 +191,7 @@ function EditProfileInfo({ navigation }: any) {
           } shadow-black`}
         >
           <View className="w-80 rounded-3xl h-14 flex items-center justify-center mt-10 mb-4 ">
-            <Text className="text-black text-lg">Informações de contato</Text>
+            <Text className="text-black text-lg">{t("Informações de contato")}</Text>
           </View>
           <View
             className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
@@ -208,7 +207,7 @@ function EditProfileInfo({ navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black text-center"
-                  placeholder="Nome"
+                  placeholder={t("Nome")}
                   placeholderTextColor="#9E9E9E"
                   defaultValue={profileInfoRedux?.name}
                   onChangeText={onChange}
@@ -261,7 +260,7 @@ function EditProfileInfo({ navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black text-center"
-                  placeholder="Telefone"
+                  placeholder={t("Telefone")}
                   placeholderTextColor="#9E9E9E"
                   defaultValue={profileInfoRedux?.phone}
                   onChangeText={onChange}
@@ -285,7 +284,7 @@ function EditProfileInfo({ navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black text-center"
-                  placeholder="Endereço"
+                  placeholder={t("Endereço")}
                   placeholderTextColor="#9E9E9E"
                   defaultValue={profileInfoRedux?.address || ""}
                   onChangeText={onChange}
@@ -312,7 +311,7 @@ function EditProfileInfo({ navigation }: any) {
                 <TextInput
                   className="h-auto text-black text-center m-1"
                   multiline={true}
-                  placeholder="Descrição"
+                  placeholder={t("Descrição")}
                   placeholderTextColor="#9E9E9E"
                   defaultValue={profileInfoRedux?.description || ""}
                   onChangeText={onChange}
@@ -332,7 +331,7 @@ function EditProfileInfo({ navigation }: any) {
             } shadow-black mt-8 mb-0`}
             onPress={handleSubmit(debounceEditProfile)}
           >
-            <Text className="text-white">Salvar</Text>
+            <Text className="text-white">{t("Salvar")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             className={`h-12 w-4/5 bg-[#fb5b5a] justify-center rounded-lg items-center ${
@@ -340,7 +339,7 @@ function EditProfileInfo({ navigation }: any) {
             } shadow-black mt-2 mb-0`}
             onPress={debounceCancel}
           >
-            <Text className="text-white">Cancelar</Text>
+            <Text className="text-white">{t("Cancelar")}</Text>
           </TouchableOpacity>
         </View>
       </View>

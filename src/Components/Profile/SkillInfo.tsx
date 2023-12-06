@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteSkill } from "../../store/skillInfoReducer";
 import { PercentProgressCircle } from "../Basics/ProgressCircle";
 import { RootState } from "../../store";
+import i18n from "../../i18n/i18n";
 
 const Box = ({ className = "", ...props }) => (
   <View
@@ -31,6 +32,9 @@ const SkillInfo: React.FC<ISkillProps> = ({
   const lastItemClassName = "border-b-0";
   const dispatch = useDispatch<any>();
   const { isLoading } = useSelector((state: RootState) => state.skillinfo);
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage)
+  const t = i18n.t
 
   if (isLoading) {
     infoToRender.push(
@@ -77,7 +81,7 @@ const SkillInfo: React.FC<ISkillProps> = ({
       infoToRender.push(
         <Box key={0} className={lastItemClassName}>
           <TextFields className="text-xl text-center my-4">
-            Adicione uma Habilidade
+            {t("AddSkillInfo")}
           </TextFields>
         </Box>
       );
@@ -92,7 +96,7 @@ const SkillInfo: React.FC<ISkillProps> = ({
     >
       <View className="w-full py-2 bg-[#0D47A1] rounded-t-xl">
         <TextFields className="text-xl text-white text-center">
-          Habilidades
+          {t("SkillHeader")}
         </TextFields>
       </View>
       <View className="flex flex-row">

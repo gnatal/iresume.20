@@ -1,106 +1,120 @@
 import * as yup from "yup";
 
-const yupInvalidMonthMsg = "Adicione um mês válido";
-const yupInvalidYearMsg = "Adicione um ano válido";
-const yupGraduationMsg = "Adicione uma graduação";
-const yupInstitutionMsg = "Adicione uma Instituição de ensino";
-const yupOcupationMsg = "Adicione um cargo";
-const yupCompanyMsg = "Adicione uma empresa";
-const yupDescriptionMsg = "Adicione uma descrição";
-const yupLanguageMsg = "Adicione uma linguagem";
-const yupProficiencyMsg = "Adicione uma prociciência";
-const yupSkillMsg = "Adicione uma habilidade";
-const yupSomethingWrongMsg = "Algo deu errado";
-const yupOldPasswordRequiredMsg = "Informe sua senha antiga";
-const yupNewPasswordRequiredMsg = "Informe sua nova senha";
-const yupConfirmPasswordMsg = "As senhas não correspondem";
+export const AcademicInfoSchema = (t) => {
+  return yup.object().shape({
+    graduation: yup.string().required(t("yupGraduationMsg")),
+    institution: yup.string().required(t("yupInstitutionMsg")),
+    description: yup.string().required(t("yupDescriptionMsg")).max(250),
+    stillWorkHere: yup.boolean(),
+    startDateMonth: yup.number().typeError(t("yupInvalidMonthMsg"))
+      .required().min(1, t("yupInvalidMonthMsg")).max(12, t("yupInvalidMonthMsg")),
+    startDateYear: yup.number().typeError(t("yupInvalidYearMsg"))
+      .required().min(1900, t("yupInvalidYearMsg")).max(2100, t("yupInvalidYearMsg")),
+    endDateMonth: yup.string()
+      .when("stillWorkHere", (values, schema) => {
+        if (!values[0]) {
+          return schema.required(t("yupInvalidMonthMsg")).test("MonthValid", t("yupInvalidMonthMsg"), function (value) {
+            const month = parseInt(value);
+            return (!isNaN(month) && ((month > 0) && (month < 13)));
+          });
+        };
+        return schema;
+      }),
+    endDateYear: yup.string()
+      .when("stillWorkHere", (values, schema) => {
+        if (!values[0]) {
+          return schema.required(t("yupInvalidYearMsg")).test("YearValid", t("yupInvalidYearMsg"), function (value) {
+            const year = parseInt(value);
+            if (!isNaN(year) && ((year > 1900) && (year < 2100))) {
+              const { startDateMonth, startDateYear, endDateMonth } = this.parent;
+              const month = parseInt(endDateMonth);
+              return (startDateYear < year) || ((startDateYear == year) && (month >= startDateMonth));
+            }
+            return false;
+          });
+        };
+        return schema;
+      }),
+  })
+}
 
-export const AcademicInfoSchema = yup.object().shape({
-  graduation: yup.string().required(yupGraduationMsg),
-  institution: yup.string().required(yupInstitutionMsg),
-  description: yup.string().required(yupDescriptionMsg).max(250),
-  stillWorkHere: yup.boolean(),
-  startDateMonth: yup.number().typeError(yupInvalidMonthMsg)
-    .required().min(1, yupInvalidMonthMsg).max(12, yupInvalidMonthMsg),
-  startDateYear: yup.number().typeError(yupInvalidYearMsg)
-    .required().min(1900, yupInvalidYearMsg).max(2100, yupInvalidYearMsg),
-  endDateMonth: yup.string()
-    .when("stillWorkHere", (values, schema) => {
-      if (!values[0]) {
-        return schema.required(yupInvalidMonthMsg).test("MonthValid", yupInvalidMonthMsg, function (value) {
-          const month = parseInt(value);
-          return (!isNaN(month) && ((month > 0) && (month < 13)));
-        });
-      };
-      return schema;
-    }),
-  endDateYear: yup.string()
-    .when("stillWorkHere", (values, schema) => {
-      if (!values[0]) {
-        return schema.required(yupInvalidYearMsg).test("YearValid", yupInvalidYearMsg, function (value) {
-          const year = parseInt(value);
-          if (!isNaN(year) && ((year > 1900) && (year < 2100))) {
-            const { startDateMonth, startDateYear, endDateMonth } = this.parent;
-            const month = parseInt(endDateMonth);
-            return (startDateYear < year) || ((startDateYear == year) && (month >= startDateMonth));
-          }
-          return false;
-        });
-      };
-      return schema;
-    }),
-});
 
-export const ProfessionalInfoSchema = yup.object().shape({
-  ocupation: yup.string().required(yupOcupationMsg),
-  company: yup.string().required(yupCompanyMsg),
-  description: yup.string().required(yupDescriptionMsg).max(250),
-  stillWorkHere: yup.boolean(),
-  startDateMonth: yup.number().typeError(yupInvalidMonthMsg)
-    .required().min(1, yupInvalidMonthMsg).max(12, yupInvalidMonthMsg),
-  startDateYear: yup.number().typeError(yupInvalidYearMsg)
-    .required().min(1900, yupInvalidYearMsg).max(2100, yupInvalidYearMsg),
-  endDateMonth: yup.string()
-    .when("stillWorkHere", (values, schema) => {
-      if (!values[0]) {
-        return schema.required(yupInvalidMonthMsg).test("MonthValid", yupInvalidMonthMsg, function (value) {
-          const month = parseInt(value);
-          return (!isNaN(month) && ((month > 0) && (month < 13)));
-        });
-      };
-      return schema;
-    }),
-  endDateYear: yup.string()
-    .when("stillWorkHere", (values, schema) => {
-      if (!values[0]) {
-        return schema.required(yupInvalidYearMsg).test("YearValid", yupInvalidYearMsg, function (value) {
-          const year = parseInt(value);
-          if (!isNaN(year) && ((year > 1900) && (year < 2100))) {
-            const { startDateMonth, startDateYear, endDateMonth } = this.parent;
-            const month = parseInt(endDateMonth);
-            return (startDateYear < year) || ((startDateYear == year) && (month >= startDateMonth));
-          }
-          return false;
-        });
-      };
-      return schema;
-    }),
-});
 
-export const LanguageInfoSchema = yup.object().shape({
-  language: yup.string().typeError(yupSomethingWrongMsg).required(yupLanguageMsg),
-  level: yup.number().typeError(yupSomethingWrongMsg).required(yupProficiencyMsg).min(0).max(100),
-});
+export const ProfessionalInfoSchema = (t) => {
+  return yup.object().shape({
+    ocupation: yup.string().required(t("yupOcupationMsg")),
+    company: yup.string().required(t("yupCompanyMsg")),
+    description: yup.string().required(t("yupDescriptionMsg")).max(250),
+    stillWorkHere: yup.boolean(),
+    startDateMonth: yup.number().typeError(t("yupInvalidMonthMsg"))
+      .required().min(1, t("yupInvalidMonthMsg")).max(12, t("yupInvalidMonthMsg")),
+    startDateYear: yup.number().typeError(t("yupInvalidYearMsg"))
+      .required().min(1900, t("yupInvalidYearMsg")).max(2100, t("yupInvalidYearMsg")),
+    endDateMonth: yup.string()
+      .when("stillWorkHere", (values, schema) => {
+        if (!values[0]) {
+          return schema.required(t("yupInvalidMonthMsg")).test("MonthValid", t("yupInvalidMonthMsg"), function (value) {
+            const month = parseInt(value);
+            return (!isNaN(month) && ((month > 0) && (month < 13)));
+          });
+        };
+        return schema;
+      }),
+    endDateYear: yup.string()
+      .when("stillWorkHere", (values, schema) => {
+        if (!values[0]) {
+          return schema.required(t("yupInvalidYearMsg")).test("YearValid", t("yupInvalidYearMsg"), function (value) {
+            const year = parseInt(value);
+            if (!isNaN(year) && ((year > 1900) && (year < 2100))) {
+              const { startDateMonth, startDateYear, endDateMonth } = this.parent;
+              const month = parseInt(endDateMonth);
+              return (startDateYear < year) || ((startDateYear == year) && (month >= startDateMonth));
+            }
+            return false;
+          });
+        };
+        return schema;
+      }),
+  });
+}
 
-export const SkillInfoSchema = yup.object().shape({
-  skill: yup.string().typeError(yupSomethingWrongMsg).required(yupSkillMsg),
-  level: yup.number().typeError(yupSomethingWrongMsg).required(yupProficiencyMsg).min(0).max(100),
-});
+export const LanguageInfoSchema = (t) => {
+  return yup.object().shape({
+    language: yup.string().typeError(t("yupSomethingWrongMsg")).required(t("yupLanguageMsg")),
+    level: yup.number().typeError(t("yupSomethingWrongMsg")).required(t("yupProficiencyMsg")).min(0).max(100),
+  });
+}
 
-export const ChangePasswordSchema = yup.object().shape({
-  oldPassword: yup.string().required(yupOldPasswordRequiredMsg).min(8),
-  password: yup.string().required(yupNewPasswordRequiredMsg).min(8),
-  passwordConfirmation: yup
-    .string()
-    .oneOf([yup.ref("password"), null], yupConfirmPasswordMsg),
-});
+export const SkillInfoSchema = (t) => {
+  return yup.object().shape({
+    skill: yup.string().typeError(t("yupSomethingWrongMsg")).required(t("yupSkillMsg")),
+    level: yup.number().typeError(t("yupSomethingWrongMsg")).required(t("yupProficiencyMsg")).min(0).max(100),
+  });
+}
+
+
+export const ChangePasswordSchema = (t) => {
+  return yup.object().shape({
+    oldPassword: yup.string().required(t("yupOldPasswordRequiredMsg")).min(8),
+    password: yup.string().required(t("yupNewPasswordRequiredMsg")).min(8),
+    passwordConfirmation: yup
+      .string()
+      .oneOf([yup.ref("password"), null], t("yupConfirmPasswordMsg")),
+  });
+}
+
+export const profileSchema = (t) => {
+  return yup.object().shape({
+    name: yup.string().required(t("yupNameRequiredMsg")),
+    email: yup.string().email().required(t("yupEmailRequiredMsg")),
+    phone: yup.string().required(t("yupPhoneRequiredMsg")).min(8),
+    address: yup.string(),
+    description: yup.string(),
+  });
+}
+export const loginSchema = (t) => {
+  return yup.object().shape({
+    email: yup.string().email().required(t("yupEmailRequiredMsg")),
+    password: yup.string().required(t("yupPasswordRequiredMsg")).min(8),
+  });
+}

@@ -12,6 +12,8 @@ import {
 } from "react-native";
 import { newPassWithToken } from "../../Services/newPasswordWithToken";
 import * as yup from "yup";
+import { useSelector } from "react-redux";
+import i18n from "../../i18n/i18n";
 
 const newPasswordSchema = yup.object().shape({
   token: yup.string().required("Token required"),
@@ -22,6 +24,9 @@ const newPasswordSchema = yup.object().shape({
 });
 
 function NewPassword({ navigation }: any) {
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage);
+  const t = i18n.t;
   const {
     control,
     handleSubmit,
@@ -67,7 +72,7 @@ function NewPassword({ navigation }: any) {
           <Image source={require("../../../assets/logo.png")} />
         </View>
         <View className="bg-[#F5F5F5] w-4/5 pb-10 mt-10 border-2 items-center border-solid  rounded-xl border-[#9FC0C7] shadow-xl shadow-black">
-          <Text className="w-4/5 my-8 text-center">Informe uma nova senha</Text>
+          <Text className="w-4/5 my-8 text-center">{t("informe sua nova senha")}</Text>
           <View
             className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
               Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
@@ -110,7 +115,7 @@ function NewPassword({ navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black"
-                  placeholder="Confirme sua senha"
+                  placeholder={t("Confirmar senha")}
                   secureTextEntry={true}
                   placeholderTextColor="#9E9E9E"
                   onChangeText={onChange}
@@ -156,7 +161,7 @@ function NewPassword({ navigation }: any) {
               Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
             } shadow-black mt-8 mb-0`}
           >
-            <Text className="text-white">Enviar</Text>
+            <Text className="text-white">{t("Enviar")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             className={`h-12 w-4/5 bg-[#009688] justify-center rounded-lg items-center ${
@@ -164,7 +169,7 @@ function NewPassword({ navigation }: any) {
             } shadow-black mt-2 mb-0`}
             onPress={handleCancel}
           >
-            <Text className="text-white">Voltar</Text>
+            <Text className="text-white">{t("Cancelar")}</Text>
           </TouchableOpacity>
         </View>
       </View>

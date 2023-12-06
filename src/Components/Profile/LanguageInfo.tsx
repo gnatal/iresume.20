@@ -12,6 +12,7 @@ import { deleteLanguage } from "../../store/languageInfoReducer";
 import { PercentProgressCircle } from "../Basics/ProgressCircle";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import i18n from "../../i18n/i18n";
 
 const Box = ({ className = "", ...props }) => (
   <View
@@ -32,6 +33,9 @@ const LanguageInfo: React.FC<ILanguageProps> = ({
   const lastItemClassName = "border-b-0";
   const dispatch = useDispatch<any>();
   const { isLoading } = useSelector((state: RootState) => state.languageinfo);
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage)
+  const t = i18n.t
 
   if (isLoading) {
     infoToRender.push(
@@ -78,7 +82,7 @@ const LanguageInfo: React.FC<ILanguageProps> = ({
       infoToRender.push(
         <Box key={0} className={lastItemClassName}>
           <TextFields className="text-xl text-center my-4">
-            Adicione uma proficiência
+            {t("AddLanguageInfo")}
           </TextFields>
         </Box>
       );
@@ -93,7 +97,7 @@ const LanguageInfo: React.FC<ILanguageProps> = ({
     >
       <View className="w-full py-2 bg-[#0D47A1] rounded-t-xl">
         <TextFields className="text-xl text-white text-center">
-          Proficiência Linguística
+          {t("LanguageHeader")}
         </TextFields>
       </View>
       <View className="flex flex-row">

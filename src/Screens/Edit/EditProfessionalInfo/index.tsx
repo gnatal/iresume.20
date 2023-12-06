@@ -19,6 +19,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { useDebouncedCallback } from "use-debounce";
+import i18n from "../../../i18n/i18n";
 
 function EditProfessionalInfo({ route, navigation }: any) {
   const professionalInfoRedux = useSelector(
@@ -26,6 +27,9 @@ function EditProfessionalInfo({ route, navigation }: any) {
   );
   const dispatch = useDispatch<any>();
   const [errorMessage, setError] = useState("");
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage)
+  const t = i18n.t
   // Get the info ID from route params
   const infoID: Number = route.params?.infoID || -1;
   // Fetch info from global example array, if exist
@@ -56,7 +60,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
     formState: { errors },
   } = useForm({
     mode: "onSubmit",
-    resolver: yupResolver(ProfessionalInfoSchema),
+    resolver: yupResolver(ProfessionalInfoSchema(t)),
     defaultValues: {
       // Set Default form values for Yup
       ocupation: info.ocupation,
@@ -129,7 +133,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
         <View className="w-4/5 pb-10 mb-10 mt-10 border-2 items-center border-solid shadow-xl rounded-xl bg-[#F5F5F5] border-[#9FC0C7] shadow-black">
           <View className="w-80 rounded-3xl h-14 flex items-center justify-center my-2">
             <Text className="text-black text-lg">
-              {infoID == -1 && "Nova "}Experiência Profissional
+              {t("EditProfessionalInfo.title")}
             </Text>
           </View>
           {/* Ocupation */}
@@ -147,7 +151,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black text-center"
-                  placeholder="Cargo"
+                  placeholder={t("EditProfessionalInfo.role")}
                   placeholderTextColor="#9E9E9E"
                   defaultValue={info?.ocupation}
                   onChangeText={onChange}
@@ -176,7 +180,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black text-center"
-                  placeholder="Empresa"
+                  placeholder={t("EditProfessionalInfo.company")}
                   placeholderTextColor="#9E9E9E"
                   defaultValue={info?.company}
                   onChangeText={onChange}
@@ -192,7 +196,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
           {/* Start Date Fields */}
           <View className="w-4/5">
             <View className="flex-row w-4/5 mt-4 mb-2">
-              <Text>Data de início</Text>
+              <Text>{t("EditProfessionalInfo.startDate")}</Text>
             </View>
             <View className="flex-row w-4/5">
               {/* Start Month */}
@@ -211,7 +215,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
                     <TextInput
                       keyboardType="numeric"
                       className="h-10 text-black text-center"
-                      placeholder="Mês"
+                      placeholder={t("Month")}
                       placeholderTextColor="#9E9E9E"
                       defaultValue={
                         info.startDateMonth != 0
@@ -239,7 +243,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
                     <TextInput
                       keyboardType="numeric"
                       className="h-10 text-black text-center"
-                      placeholder="Ano"
+                      placeholder={t("Year")}
                       placeholderTextColor="#9E9E9E"
                       defaultValue={
                         info.startDateYear != 0
@@ -280,13 +284,13 @@ function EditProfessionalInfo({ route, navigation }: any) {
                 />
               )}
             />
-            <Text>Ainda trabalho aqui</Text>
+            <Text>{t("EditProfessionalInfo.stillWorkHere")}</Text>
           </View>
           {/* End Date fields */}
           {!isChecked && (
             <View className="w-4/5">
               <View className="flex-row w-4/5 mt-4 mb-2">
-                <Text>Data de término</Text>
+                <Text>{t("EditProfessionalInfo.endDate")}</Text>
               </View>
               <View className="flex-row w-4/5">
                 {/* End Month */}
@@ -305,7 +309,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
                       <TextInput
                         keyboardType="numeric"
                         className="h-10 text-black text-center"
-                        placeholder="Mês"
+                        placeholder={t("Month")}
                         placeholderTextColor="#9E9E9E"
                         defaultValue={
                           info.endDateMonth != 0
@@ -334,7 +338,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
                       <TextInput
                         keyboardType="numeric"
                         className="h-10 text-black text-center"
-                        placeholder="Ano"
+                        placeholder={t("Year")}
                         placeholderTextColor="#9E9E9E"
                         defaultValue={
                           info.endDateYear != 0
@@ -373,7 +377,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
                 <TextInput
                   className="h-36 text-black text-center"
                   multiline={true}
-                  placeholder="Descrição"
+                  placeholder={t("EditProfessionalInfo.description")}
                   placeholderTextColor="#9E9E9E"
                   defaultValue={info?.description}
                   onChangeText={onChange}
@@ -391,7 +395,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
             className="h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center shadow-lg shadow-black mt-8 mb-0"
             onPress={handleSubmit(debouncedEditProfessional)}
           >
-            <Text className="text-white">Salvar</Text>
+            <Text className="text-white">{t("Salvar")}</Text>
           </TouchableOpacity>
           {errorMessage != "" && (
             <Text className="text-[#c3a040] mb-2 mt-2">*{errorMessage}</Text>
@@ -401,7 +405,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
             className="h-12 w-4/5 bg-[#fb5b5a] justify-center rounded-lg items-center shadow-lg shadow-black mt-2 mb-0"
             onPress={debouncedCancel}
           >
-            <Text className="text-white">Cancelar</Text>
+            <Text className="text-white">{t("Cancelar")}</Text>
           </TouchableOpacity>
         </View>
       </View>
