@@ -3,15 +3,14 @@ import {
   Text,
   View,
   TouchableOpacity,
-  StyleSheet,
   Platform,
+  TextInput,
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LanguageInfoSchema } from "../../../Components/Yup/Schemas";
 import { ScrollView } from "react-native-gesture-handler";
-import { ILanguageInfo, Languages } from "../../../utils/DataTypes";
-import SelectDropdown from "react-native-select-dropdown";
+import { ILanguageInfo } from "../../../utils/DataTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import {
@@ -40,7 +39,7 @@ function EditLanguageInfo({ route, navigation }: any) {
       if (value.id == infoID) info = { ...value };
     });
   // If info undefined, set Default empty params
-  if (!info) info = { id: -1, language: Languages.pt, level: 0 };
+  if (!info) info = { id: -1, language: "", level: 0 };
 
   const {
     control,
@@ -109,11 +108,10 @@ function EditLanguageInfo({ route, navigation }: any) {
               {t("EditLanguageInfo.title")}
             </Text>
           </View>
-          {/* Graduation */}
+          {/* Language */}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
-              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-            } shadow-black px-2 justify-center h-14 mb-0 mt-2`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+              } shadow-black px-2 justify-center h-24 mb-2 mt-0`}
           >
             <Controller
               control={control}
@@ -123,23 +121,12 @@ function EditLanguageInfo({ route, navigation }: any) {
               }}
               render={({ field: { onChange, onBlur, value } }) => (
                 <View className="items-center justify-center">
-                  <SelectDropdown
-                    data={Object.values(Languages)}
-                    defaultButtonText={info.language}
-                    onSelect={(selectedItem, index) => {
-                      onChange(selectedItem);
-                    }}
-                    buttonTextAfterSelection={(selectedItem, index) => {
-                      // text represented after item is selected
-                      // if data array is an array of objects then return selectedItem.property to render after item is selected
-                      return selectedItem;
-                    }}
-                    rowTextForSelection={(item, index) => {
-                      // text represented for each item in dropdown
-                      // if data array is an array of objects then return item.property to represent item in dropdown
-                      return item;
-                    }}
-                    dropdownStyle={styles.dropdown}
+                  <TextInput
+                    className="h-10 text-black text-center"
+                    placeholder="Linguagem"
+                    placeholderTextColor="#9E9E9E"
+                    defaultValue={info?.language}
+                    onChangeText={onChange}
                   />
                 </View>
               )}
@@ -153,9 +140,8 @@ function EditLanguageInfo({ route, navigation }: any) {
           )}
           {/* Institution */}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
-              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-            } shadow-black px-2 justify-center h-32 mb-0 mt-4`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+              } shadow-black px-2 justify-center h-32 mb-0 mt-4`}
           >
             <Controller
               control={control}
@@ -191,9 +177,8 @@ function EditLanguageInfo({ route, navigation }: any) {
           )}
           {/* Submit Button */}
           <TouchableOpacity
-            className={`h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center ${
-              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-            } shadow-black mt-8 mb-0`}
+            className={`h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+              } shadow-black mt-8 mb-0`}
             onPress={handleSubmit(debouncedEditLanguage)}
           >
             <Text className="text-white">{t("Salvar")}</Text>
@@ -203,9 +188,8 @@ function EditLanguageInfo({ route, navigation }: any) {
           )}
           {/* Cancel Button */}
           <TouchableOpacity
-            className={`h-12 w-4/5 bg-[#fb5b5a] justify-center rounded-lg items-center ${
-              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-            } shadow-black mt-2 mb-0`}
+            className={`h-12 w-4/5 bg-[#fb5b5a] justify-center rounded-lg items-center ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+              } shadow-black mt-2 mb-0`}
             onPress={debouncedCancel}
           >
             <Text className="text-white">{t("Cancelar")}</Text>
@@ -215,12 +199,5 @@ function EditLanguageInfo({ route, navigation }: any) {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  dropdown: {
-    borderRadius: 10,
-    backgroundColor: "#f2f2f2",
-  },
-});
 
 export default EditLanguageInfo;

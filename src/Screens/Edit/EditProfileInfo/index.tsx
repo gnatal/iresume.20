@@ -33,10 +33,10 @@ function EditProfileInfo({ navigation }: any) {
   const profileInfoRedux = useSelector((state: RootState) => state.profileinfo);
   const dispatch = useDispatch<any>();
   const [photo, setPhoto] = useState(null);
-  const debounceCancel = useDebouncedCallback(() => handleCancel(), 1000);
+  const debounceCancel = useDebouncedCallback(() => handleCancel(), 500);
   const debounceEditProfile = useDebouncedCallback((profile: any) => {
     handleEditProfile({ ...profile });
-  }, 1000);
+  }, 500);
 
   const appLanguage = useSelector((state: any) => state.appLanguage.value);
   i18n.changeLanguage(appLanguage)
@@ -52,6 +52,8 @@ function EditProfileInfo({ navigation }: any) {
     control,
     handleSubmit,
     formState: { errors },
+    getValues,
+    setValue
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(profileSchema(t)),
@@ -59,8 +61,8 @@ function EditProfileInfo({ navigation }: any) {
       name: profileInfoRedux?.name,
       email: profileInfoRedux?.email,
       phone: profileInfoRedux?.phone,
-      address: profileInfoRedux?.address,
-      description: profileInfoRedux?.description,
+      address: profileInfoRedux?.address || "",
+      description: profileInfoRedux?.description || "",
     },
   });
 
@@ -219,7 +221,7 @@ function EditProfileInfo({ navigation }: any) {
           <View
             className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
               Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
-            } shadow-black px-2 justify-center h-12 mb-0 mt-4`}
+            } shadow-black px-2 justify-center min-h-12 mb-0 mt-4`}
           >
             <Controller
               control={control}
@@ -229,10 +231,11 @@ function EditProfileInfo({ navigation }: any) {
               }}
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
-                  className="h-10 text-black text-center"
+                  className="h-12 text-black text-center"
                   placeholder="Email"
                   placeholderTextColor="#9E9E9E"
                   defaultValue={profileInfoRedux?.email}
+                  autoCapitalize="none"
                   onChangeText={onChange}
                 />
               )}
@@ -278,20 +281,23 @@ function EditProfileInfo({ navigation }: any) {
             <Controller
               control={control}
               name="address"
-              rules={{
-                required: true,
-              }}
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-10 text-black text-center"
                   placeholder={t("Endereço")}
                   placeholderTextColor="#9E9E9E"
-                  defaultValue={profileInfoRedux?.address}
+                  defaultValue={profileInfoRedux?.address || ""}
                   onChangeText={onChange}
                 />
               )}
             />
           </View>
+          {errors.address && (
+            <Text className="text-[#FF5252] mb-2">
+              {errors?.address?.message}
+            </Text>
+          )}
+
           <View
             className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
               Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
@@ -301,21 +307,24 @@ function EditProfileInfo({ navigation }: any) {
             <Controller
               control={control}
               name="description"
-              rules={{
-                required: true,
-              }}
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   className="h-auto text-black text-center m-1"
                   multiline={true}
                   placeholder={t("Descrição")}
                   placeholderTextColor="#9E9E9E"
-                  defaultValue={profileInfoRedux?.description}
+                  defaultValue={profileInfoRedux?.description || ""}
                   onChangeText={onChange}
                 />
               )}
             />
           </View>
+          {errors.description && (
+            <Text className="text-[#FF5252] mb-2">
+              {errors?.description?.message}
+            </Text>
+          )}
+
           <TouchableOpacity
             className={`h-12 w-4/5 bg-[#42A5F5] justify-center rounded-lg items-center ${
               Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"

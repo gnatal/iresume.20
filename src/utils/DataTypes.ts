@@ -89,15 +89,10 @@ export type User = {
   };
   
   // Languages and skills
-  export enum Languages {
-    pt = "Português",
-    en = "Inglês",
-    es = "Espanhol",
-  };
   
   export interface ILanguageInfo {
     id: number;
-    language: Languages;
+    language: string;
     level: number;
   };
   export interface ILanguageProps {

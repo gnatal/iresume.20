@@ -49,6 +49,7 @@ export default function Policy({ navigation }: any) {
       </View>
       <View className="h-[500] mt-10">
         <WebView
+          nestedScrollEnabled
           source={{
             html: policyPage,
           }}

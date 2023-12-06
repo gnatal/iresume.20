@@ -39,6 +39,7 @@ export const AcademicInfoSchema = (t) => {
 }
 
 
+
 export const ProfessionalInfoSchema = (t) => {
   return yup.object().shape({
     ocupation: yup.string().required(t("yupOcupationMsg")),

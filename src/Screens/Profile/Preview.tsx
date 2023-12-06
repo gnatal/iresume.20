@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-  Platform,
   Text,
   View,
-  Linking,
-  SafeAreaView,
-  ScrollView,
   RefreshControl,
   Dimensions,
 } from "react-native";
@@ -43,10 +39,7 @@ export default function Preview({ navigation }: any) {
   const [key, setKey] = useState(0);
   const [template, setTemplate] = useState(0);
   const dispatch = useDispatch<any>();
-
-  const webviewHeight = Dimensions.get("window").height > 600 ? Dimensions.get("window").height * (2/3) : Dimensions.get("window").height * (2/4) ;
-
-  
+  const webviewHeight = Dimensions.get("window").height > 600 ? Dimensions.get("window").height * (5 / 7) : Dimensions.get("window").height * (2 / 4);
 
   const generateHTMLData = () => {
     return {
@@ -64,7 +57,7 @@ export default function Preview({ navigation }: any) {
   };
 
   useEffect(() => {
-    generateHTMLPage(template);
+    // generateHTMLPage(template);
   }, []);
 
   const generateHTMLPage = async (template = 0) => {
@@ -115,65 +108,70 @@ export default function Preview({ navigation }: any) {
   };
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        <View className="w-full flex items-center">
-          <Text className="pt-4 text-lg pb-2"> Select your template</Text>
-          <SelectDropdown
-            data={["White Ofice", "Purple day", "Blue sky"]}
-            onSelect={(selectedItem, index) => {
-              console.log("SELECTED ITEM AND INDEX", selectedItem, index);
-              setTemplate(index);
-              generateHTMLPage(index);
+    <View className="flex flex-column">
+      <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      <View className="w-full flex items-center mt-10">
+        <SelectDropdown
+          data={["White Ofice", "Purple day", "Blue sky"]}
+          onSelect={(selectedItem, index) => {
+            setTemplate(index);
+            generateHTMLPage(index);
+          }}
+          defaultButtonText="Selecione um template"
+          buttonStyle={{
+            width: 400,
+            backgroundColor: "#FFF",
+            borderRadius: 20,
+          }}
+          dropdownStyle={{
+            borderRadius: 20,
+          }}
+        />
+      </View>
+      <View className="flex flex-row gap-x-6 mt-4 justify-center items-center">
+        <TouchableOpacity
+          disabled={false}
+          className="w-40 bg-[#42A5F5] rounded-3xl h-8 items-center justify-center"
+          onPress={downloadAsPdf}
+        >
+          <Text className="text-white">Download PDF</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          disabled={false}
+          className="w-40 bg-[#42A5F5] rounded-3xl h-8 items-center justify-center"
+          onPress={() => { Clipboard.setStringAsync(profileInfoRedux.pdfLink) }}
+        >
+          <Text className="text-white">Copiar link</Text>
+        </TouchableOpacity>
+      </View>
+      <View
+        style={{
+          height: webviewHeight,
+          borderColor: "#ff00ff",
+        }}
+      >
+        {!refreshing && profileInfoRedux.pdfLink ? (
+          <WebView
+            nestedScrollEnabled
+            source={{
+              uri:
+                profileInfoRedux.pdfLink ||
+                "https://en.wikipedia.org/wiki/HTTP_404",
             }}
-            buttonStyle={{
-              width: 400,
-              backgroundColor: "#FFF",
-              borderRadius: 20,
+            key={key}
+            style={{
+              marginTop: 20,
+              height: webviewHeight,
             }}
           />
-        </View>
-        {!refreshing && (
-          <View
-            style={{
-              height: webviewHeight,
-              borderColor: "#ff00ff",
-            }}
-          >
-            <WebView
-              nestedScrollEnabled
-              source={{
-                uri:
-                  profileInfoRedux.pdfLink ||
-                  "https://en.wikipedia.org/wiki/HTTP_404",
-              }}
-              key={key}
-              style={{
-                marginTop: Platform.OS === "ios" ? 20 : 30,
-                height: webviewHeight,
-              }}
-            />
+        ) : (
+          <View className="flex-1 justify-center items-center">
+            <Text className="text-lg text-gray-600">
+              Você ainda não tem um currículo
+            </Text>
           </View>
         )}
-        <View className="flex justify-center items-center">
-          <Text
-            className="color-[#0000ff] mt-4 mb-2"
-            onPress={() => {
-              Clipboard.setStringAsync(profileInfoRedux.pdfLink);
-            }}
-          >
-            Link to file: click here
-          </Text>
-          <TouchableOpacity
-            disabled={false}
-            className="w-80 bg-[#c3a040] rounded-3xl h-8 items-center justify-center mb-4"
-            onPress={downloadAsPdf}
-          >
-            <Text className="text-white">Download PDF</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+      </View>
+    </View>
   );
 }

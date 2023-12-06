@@ -106,7 +106,7 @@ function EditSkillInfo({ route, navigation }: any) {
               {t("EditSkillInfo.title")}
             </Text>
           </View>
-          {/* Graduation */}
+          {/* Skill */}
           <View
             className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
               Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
@@ -201,12 +201,5 @@ function EditSkillInfo({ route, navigation }: any) {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  dropdown: {
-    borderRadius: 10,
-    backgroundColor: "#f2f2f2",
-  },
-});
 
 export default EditSkillInfo;
