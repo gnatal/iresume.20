@@ -18,6 +18,7 @@
     "yupNameRequiredMsg": "Add a name",
     "yupEmailRequiredMsg": "Add an email",
     "yupPhoneRequiredMsg": "Add a phone",
+    "yupPasswordRequiredMsg": "Add a password",
 
     "__UTILS__": "__UTILS__",
     "emailRequired": "Email is required",

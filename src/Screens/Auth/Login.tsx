@@ -21,11 +21,9 @@ import { useDebouncedCallback } from "use-debounce";
 import { setLanguage } from "../../store/appLanguage";
 import i18n from "../../i18n/i18n";
 import { CountryFlag } from "react-native-flag-creator";
+import { loginSchema } from "../../Components/Yup/Schemas";
 
-const loginSchema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().required().min(8),
-});
+
 
 function Login({ navigation }: any) {
   const dispatch = useDispatch();
@@ -40,7 +38,7 @@ function Login({ navigation }: any) {
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(loginSchema(t)),
     defaultValues: {
       email: "",
       password: "",

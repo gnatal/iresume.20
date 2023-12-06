@@ -112,3 +112,9 @@ export const profileSchema = (t) => {
     description: yup.string(),
   });
 }
+export const loginSchema = (t) => {
+  return yup.object().shape({
+    email: yup.string().email().required(t("yupEmailRequiredMsg")),
+    password: yup.string().required(t("yupPasswordRequiredMsg")).min(8),
+  });
+}
