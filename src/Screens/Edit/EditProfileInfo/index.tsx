@@ -26,14 +26,8 @@ import { EditButton } from "../../../Components/Basics/EditButtons";
 import * as FileSystem from "expo-file-system";
 import { useDebouncedCallback } from "use-debounce";
 import i18n from "../../../i18n/i18n";
+import { profileSchema } from "../../../Components/Yup/Schemas";
 
-const profileSchema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().email().required(),
-  phone: yup.string().required().min(8),
-  address: yup.string(),
-  description: yup.string(),
-});
 
 function EditProfileInfo({ navigation }: any) {
   const profileInfoRedux = useSelector((state: RootState) => state.profileinfo);
@@ -60,7 +54,7 @@ function EditProfileInfo({ navigation }: any) {
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    resolver: yupResolver(profileSchema),
+    resolver: yupResolver(profileSchema(t)),
     defaultValues: {
       name: profileInfoRedux?.name,
       email: profileInfoRedux?.email,

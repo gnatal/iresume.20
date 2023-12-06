@@ -48,7 +48,7 @@ function EditLanguageInfo({ route, navigation }: any) {
     formState: { errors },
   } = useForm({
     mode: "onSubmit",
-    resolver: yupResolver(LanguageInfoSchema),
+    resolver: yupResolver(LanguageInfoSchema(t)),
     defaultValues: {
       // Set Default form values for Yup
       language: info.language,

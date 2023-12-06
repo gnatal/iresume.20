@@ -15,6 +15,9 @@
     "yupOldPasswordRequiredMsg": "Informe sua senha antiga",
     "yupNewPasswordRequiredMsg": "Informe sua nova senha",
     "yupConfirmPasswordMsg": "As senhas não correspondem",
+    "yupNameRequiredMsg": "Adicione um nome",
+    "yupEmailRequiredMsg": "Adicione um email",
+    "yupPhoneRequiredMsg": "Adicione um telefone",
 
     "__UTILS__": "__UTILS__",
     "emailRequired": "Email é obrigatório",

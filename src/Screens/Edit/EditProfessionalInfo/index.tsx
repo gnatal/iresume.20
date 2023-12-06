@@ -60,7 +60,7 @@ function EditProfessionalInfo({ route, navigation }: any) {
     formState: { errors },
   } = useForm({
     mode: "onSubmit",
-    resolver: yupResolver(ProfessionalInfoSchema),
+    resolver: yupResolver(ProfessionalInfoSchema(t)),
     defaultValues: {
       // Set Default form values for Yup
       ocupation: info.ocupation,

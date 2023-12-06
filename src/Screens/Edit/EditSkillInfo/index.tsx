@@ -47,7 +47,7 @@ function EditSkillInfo({ route, navigation }: any) {
     formState: { errors },
   } = useForm({
     mode: "onSubmit",
-    resolver: yupResolver(SkillInfoSchema),
+    resolver: yupResolver(SkillInfoSchema(t)),
     defaultValues: {
       // Set Default form values for Yup
       skill: info.skill,
