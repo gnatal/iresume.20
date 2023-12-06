@@ -22,7 +22,7 @@ export default function ChangePassword({ navigation }: any) {
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    resolver: yupResolver(ChangePasswordSchema),
+    resolver: yupResolver(ChangePasswordSchema(t)),
     defaultValues: {
       oldPassword: "",
       password: "",

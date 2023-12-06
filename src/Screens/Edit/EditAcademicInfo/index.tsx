@@ -60,7 +60,7 @@ function EditAcademicInfo({ route, navigation }: any) {
     formState: { errors },
   } = useForm({
     mode: "onSubmit",
-    resolver: yupResolver(AcademicInfoSchema),
+    resolver: yupResolver(AcademicInfoSchema(t)),
     defaultValues: {
       // Set Default form values for Yup
       graduation: info.graduation,
