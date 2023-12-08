@@ -9,7 +9,7 @@ import {
   export const generateHTMLProfile = (profile: IProfile) => {
     return `
         <div class="profile-image-box">
-            <img class="profile-image" src="${profile.image}" alt="Profile Picture" class="profile-image">
+            <img class="profile-image" src="${profile.image}" alt="Profile Picture" class="profile-image" onerror="this.style.display='none'">
         </div>
         <div class="profile-data">  
             <p class="profile-text">${profile.name}</p>

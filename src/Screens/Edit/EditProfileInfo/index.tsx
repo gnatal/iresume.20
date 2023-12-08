@@ -22,7 +22,7 @@ import * as ImagePicker from "expo-image-picker";
 import { uploadImageToBucket } from "../../../Services/uploadImageToBucket";
 import Loading from "../../../Components/Basics/Loading";
 import { showMessage } from "react-native-flash-message";
-import { EditButton } from "../../../Components/Basics/EditButtons";
+import { CancelEditButton, EditButton } from "../../../Components/Basics/EditButtons";
 import * as FileSystem from "expo-file-system";
 import { useDebouncedCallback } from "use-debounce";
 import i18n from "../../../i18n/i18n";
@@ -160,6 +160,10 @@ function EditProfileInfo({ navigation }: any) {
     }
   };
 
+  const handleRemovePhoto = () => {
+    // implement remove picture
+  }
+
   return (
     <ScrollView className="mt-10">
       <View className="flex flex-col items-center w-screen h-auto bg-[#f2f2f2]">
@@ -183,6 +187,10 @@ function EditProfileInfo({ navigation }: any) {
           <EditButton
             className="absolute bottom-[-10] right-[-10]"
             onPress={handleChoosePhoto}
+          />
+          <CancelEditButton
+            className="absolute bottom-[-10] left-[-10]"
+            onPress={handleRemovePhoto}
           />
         </View>
         <View

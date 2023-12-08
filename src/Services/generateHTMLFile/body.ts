@@ -18,7 +18,7 @@ import {
 export const generateHTMLProfile = (profile: IProfile) => {
   return `
     <div class="profile-section">
-    <img src=${profile.image} alt="Profile Picture" class="profile-pic">
+    <img src=${profile.image} alt="Profile Picture" class="profile-pic" onerror="this.style.display='none'">
     <div>
       <h2>Personal Information</h2>
 
