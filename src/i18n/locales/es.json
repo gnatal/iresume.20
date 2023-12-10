@@ -1,0 +1,146 @@
+{
+  "translation": {
+    "__YUP__": "__YUP__",
+    "yupInvalidMonthMsg": "Ingrese un mes válido",
+    "yupInvalidYearMsg": "Ingrese un año válido",
+    "yupGraduationMsg": "Ingrese un titulo de graduación",
+    "yupInstitutionMsg": "Ingrese una institución de ensenanza",
+    "yupOcupationMsg": "Ingrese una ocupación",
+    "yupCompanyMsg": "Ingrese una compania",
+    "yupDescriptionMsg": "Ingrese una descripción",
+    "yupLanguageMsg": "Seleccione un lenguaje",
+    "yupProficiencyMsg": "Ingrese un Dominio",
+    "yupSkillMsg": "Seleccione una habilidad",
+    "yupSomethingWrongMsg": "Algo ha salido mal",
+    "yupOldPasswordRequiredMsg": "Ingrese su contrasenya anterior",
+    "yupNewPasswordRequiredMsg": "Ingrese su nueva contrasenya",
+    "yupConfirmPasswordMsg": "Las contrasenyas no coinciden",
+    "yupNameRequiredMsg": "Ingrese un nombre",
+    "yupEmailRequiredMsg": "Ingrese un email",
+    "yupPhoneRequiredMsg": "Ingrese un telefono",
+    "yupPasswordRequiredMsg": "Ingrese una contrasenya",
+
+    "__UTILS__": "__UTILS__",
+    "emailRequired": "Email es obligatorio",
+    "passwordRequired": "Contrasenya es obligatorio",
+    "passwordMatchRequired": "Las contrasenyas no coinciden",
+    "Loading": "Cargando",
+    "Email": "Email",
+    "Month": "Mes",
+    "Year": "Año",
+    "MonthError": "Ingrese un mes válido",
+    "YearError": "Ingrese un año válido",
+    "Voltar": "Volver",
+
+    "__LoginScreen__": "__LoginScreen__",
+
+    "Senha": "Contrasenya",
+    "Entrar": "Iniciar sesión",
+    "Criar conta": "Crear cuenta",
+    "Esqueceu sua senha?": "¿Olvidaste tu contrasenya?",
+
+    "__PolicyLink__": "__PolicyLink__",
+
+    "Leia nossas": "Leia nuestras",
+    "Política de privacidade": "Política de privacidad",
+
+    "__SignupScreen__": "__SignupScreen__",
+
+    "Abstract": "Crée una cuenta para generar tu curriculum en formato PDF y HTML, totalmente gratuito.",
+    "Confirme sua senha": "Confirme su contrasenya",
+    "Cadastrar": "Registrar",
+    "Cancelar": "Cancelar",
+
+    "__RecoverPassword__": "__RecoverPassword__",
+    "RecoverMessage": "¿Olvidaste tu contrasenya?\nIngrese su email para recuperarla",
+    "Enviar": "Mandar",
+    "Já tem o código": "Ya tiene el código, haga clic para cambiar su contrasenya",
+
+    "__NewPassword__": "__NewPassword__",
+    "informe sua nova senha": "Ingrese su nueva contrasenya",
+    "Confirmar senha": "Confirmar contrasenya",
+
+    "__EditProfileScreen__": "__EditProfileScreen__",
+
+    "Informações de contato": "Información del contacto",
+    "Nome": "Nombre",
+    "Telefone": "Telefono",
+    "Endereço": "Dirección",
+    "Descrição": "Descripción",
+    "Salvar": "Guardar",
+
+    "nameRequired": "Nombre es obligatorio",
+    "phoneRequired": "Telefono es obligatorio",
+
+    "__AcademicInfo__": "__AcademicInfo__",
+
+    "AcademicHeader": "Experiencia academica",
+    "AddAcademicInfo": "Ingrese una experiencia",
+
+    "__EditAcademicInfo__": "__EditAcademicInfo__",
+    "EditAcademicInfo.title": "Experiencia academica",
+    "EditAcademicInfo.graduation": "Graduación - Especialización",
+    "EditAcademicInfo.institution": "Institución",
+    "EditAcademicInfo.startDate": "Fecha de Inicio",
+    "EditAcademicInfo.endDate": "Fecha Final",
+    "EditAcademicInfo.description": "Descripción",
+    "EditAcademicInfo.stillWorkHere": "Todavía estudiando aquí",
+
+    "EditAcademicInfo.graduationError": "Ingrese una graduación",
+    "EditAcademicInfo.institutionError": "Ingrese una institución de ensenanza",
+    "EditAcademicInfo.descriptionError": "Ingrese una descripción",
+
+    "__ProfessionalInfo__": "__ProfessionalInfo__",
+    "ProfessionalHeader": "Experiencia profesional",
+    "AddProfessionalInfo": "Ingrese una experiencia",
+
+    "__EditProfessionalInfo__": "__EditProfessionalInfo__",
+    "EditProfessionalInfo.title": "Experiencia profesional",
+    "EditProfessionalInfo.role": "Ocupación",
+    "EditProfessionalInfo.company": "Compania",
+    "EditProfessionalInfo.startDate": "Fecha de inicio",
+    "EditProfessionalInfo.endDate": "Fecha Final",
+    "EditProfessionalInfo.description": "Descripción",
+    "EditProfessionalInfo.stillWorkHere": "Todavía trabajando aquí",
+
+    "EditProfessionalInfo.roleError": "Ingrese una ocupación",
+    "EditProfessionalInfo.companyError": "Ingrese una compania",
+    "EditProfessionalInfo.descriptionError": "Ingrese una descripción",
+
+    "__LanguageInfo__": "__LanguageInfo__",
+    "LanguageHeader": "Dominio del idioma",
+    "AddLanguageInfo": "Ingrese un idioma",
+
+    "__EditLanguageInfo__": "__EditLanguageInfo__",
+    "EditLanguageInfo.title": "Dominio del idioma",
+
+    "__SkillInfo__": "__SkillInfo__",
+    "SkillHeader": "Habilidad",
+    "AddSkillInfo": "Ingrese una habilidad",
+
+    "__EditSkillInfo__": "__EditSkillInfo__",
+    "EditSkillInfo.title": "Habilidad",
+    "EditSkillInfo.placeholder": "Habilidad",
+    "EditSkillInfo.error": "Ingrese una habilidad",
+
+    "__MenuScreen__": "__MenuScreen__",
+    "menu.policy": "Politica de privacidad",
+    "menu.changePassword": "Cambiar contrasenya",
+    "menu.deleteAccount": "Eliminar cuenta",
+    "menu.logout": "Salir",
+    "menu.title": "Menu",
+
+    "__ChangePassword__": "__ChangePassword__",
+    "informeAtualSenha": "Ingrese su contrasenya actual",
+    "informeNovaSenha": "Ingrese su nueva contrasenya",
+    "confirmeNovaSenha": "Confirme su nueva contrasenya",
+    "Senhaatual": "Contrasenya actual",
+    "Senhanova": "Nueva contrasenya",
+    "alterarSenha": "Cambiar",
+
+    "__DeleteAccount__": "__DeleteAccount__",
+    "deleteText": "¿Seguro que quieres borrar tu cuenta?",
+    "sim": "Si",
+    "nao": "No"
+  }
+}
