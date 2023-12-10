@@ -205,7 +205,6 @@ function Login({ navigation }: any) {
               className={`h-6 w-6 m-2 bg-[#42A5F5] justify-center rounded-lg items-center ${
                 Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
               } shadow-black mt-6 mb-0`}
-              //onpress switch between en and pt
               onPress={() => dispatch(setLanguage("pt"))}
             >
               <CountryFlag
@@ -222,7 +221,6 @@ function Login({ navigation }: any) {
               className={`h-6 w-6 m-2 bg-[#42A5F5] justify-center rounded-lg items-center ${
                 Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
               } shadow-black mt-6 mb-0`}
-              //onpress switch between en and pt
               onPress={() => dispatch(setLanguage("en"))}
             >
               <CountryFlag
@@ -235,7 +233,22 @@ function Login({ navigation }: any) {
                 }}
               />
             </TouchableOpacity>
-            
+            <TouchableOpacity
+              className={`h-6 w-6 m-2 bg-[#42A5F5] justify-center rounded-lg items-center ${
+                Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+              } shadow-black mt-6 mb-0`}
+              onPress={() => dispatch(setLanguage("es"))}
+            >
+              <CountryFlag
+                countryCode="es"
+                style={{
+                  height: 35,
+                  width: 35,
+                  borderRadius: 20,
+                  backgroundColor: "gray",
+                }}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
