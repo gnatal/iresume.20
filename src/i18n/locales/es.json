@@ -72,6 +72,16 @@
     "nameRequired": "Nombre es obligatorio",
     "phoneRequired": "Telefono es obligatorio",
 
+    "__PersonalInfo__": "__PersonalInfo__",
+
+    "PersonalHeader": "Información Personal",
+    "EditPersonalInfo": "Editar tu información personal",
+
+    "DownloadPDF": "Descargar PDF",
+    "SelectTemplate": "Seleccionar una plantilla",
+    "CopyLink": "Copiar enlace",
+    "ResumeNotFound": "Aún no tienes un currículum, ¡selecciona una plantilla!",
+    
     "__AcademicInfo__": "__AcademicInfo__",
 
     "AcademicHeader": "Experiencia academica",

@@ -32,8 +32,8 @@ const AcademicInfo: React.FC<IAcademicProps> = ({
   const dispatch = useDispatch<any>();
   const { isLoading } = useSelector((state: RootState) => state.academicinfo);
   const appLanguage = useSelector((state: any) => state.appLanguage.value);
-  i18n.changeLanguage(appLanguage)
-  const t = i18n.t
+  i18n.changeLanguage(appLanguage);
+  const t = i18n.t;
 
   if (isLoading) {
     infoToRender.push(
@@ -89,9 +89,8 @@ const AcademicInfo: React.FC<IAcademicProps> = ({
 
   return (
     <View
-      className={`w-4/5 mt-10 items-center rounded-xl ${
-        Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
-      } shadow-black bg-[#F5F5F5]`}
+      className={`w-4/5 mt-10 items-center rounded-xl ${Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
+        } shadow-black bg-[#F5F5F5]`}
     >
       <View className="w-full py-2 bg-[#0D47A1] rounded-t-xl">
         <TextFields className="text-xl text-white text-center">
