@@ -128,6 +128,10 @@
     "SkillHeader": "Skills",
     "AddSkillInfo": "Add a skill",
 
+    "__LinkInfo__": "__LinkInfo__",
+    "LinkHeader": "Links",
+    "AddLinkInfo": "Add a link",
+
     "__EditSkillInfo__": "__EditSkillInfo__",
     "EditSkillInfo.title": "Skill",
     "EditSkillInfo.placeholder": "Skill",

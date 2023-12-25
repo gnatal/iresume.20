@@ -110,6 +110,19 @@ export type User = {
     Edit?: Boolean;
     navigation?: any;
   };
+
+  export interface ILinkInfo {
+    id: number;
+    label: string;
+    url: string;
+    icon: number;
+    enable: boolean;
+  };
+  export interface ILinkProps {
+    LinkInfoArray: ILinkInfo[];
+    Edit?: Boolean;
+    navigation?: any;
+  };
   
   export interface IProfile {
     email: string;

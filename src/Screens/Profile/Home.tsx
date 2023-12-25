@@ -10,10 +10,11 @@ import { ToggleEditButton } from "../../Components/Basics/EditButtons";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import useLoadUserData from "../../Hooks/useLoadUserData";
+import LinkInfo from "../../Components/Profile/LinkInfo";
 
 function HomeScreen({ navigation }: any) {
 
-  
+
   const [dispatch] = useLoadUserData();
   const profileInfoRedux = useSelector((state: RootState) => state.profileinfo);
   const academicInfoRedux = useSelector(
@@ -30,7 +31,7 @@ function HomeScreen({ navigation }: any) {
 
   const handleToggleEditButton = () => {
     setEdit(!showEdit);
-  };  
+  };
 
   return (
     <View>
@@ -58,6 +59,11 @@ function HomeScreen({ navigation }: any) {
           />
           <SkillInfo
             SkillInfoArray={skillInfoRedux.sInfoArray}
+            Edit={showEdit}
+            navigation={navigation}
+          />
+          <LinkInfo
+            LinkInfoArray={[]}
             Edit={showEdit}
             navigation={navigation}
           />

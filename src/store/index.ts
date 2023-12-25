@@ -6,6 +6,7 @@ import { ProfessionalInfoReducer } from './professionalInfoReducer';
 import { SkillInfoReducer } from './skillInfoReducer';
 import { profileInfoReducer } from './profileInfoReducer';
 import { appLanguageReducer } from "./appLanguage";
+import { LinkInfoReducer } from "./linkInfoReducer";
 
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   professionalinfo: ProfessionalInfoReducer,
   skillinfo: SkillInfoReducer,
   profileinfo: profileInfoReducer,
+  linkinfo: LinkInfoReducer,
   appLanguage: appLanguageReducer,
 });
 
