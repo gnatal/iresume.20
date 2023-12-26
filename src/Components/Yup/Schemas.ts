@@ -92,6 +92,15 @@ export const SkillInfoSchema = (t) => {
   });
 }
 
+export const LinkInfoSchema = (t) => {
+  return yup.object().shape({
+    label: yup.string().typeError(t("yupSomethingWrongMsg")).required(t("yupLinkLabelMsg")).max(30, t("yupSomethingWrongMsg")),
+    url: yup.string().typeError(t("yupSomethingWrongMsg")).required(t("yupLinkUrlMsg")).max(200, t("yupSomethingWrongMsg")),
+    icon: yup.number().typeError(t("yupSomethingWrongMsg")).min(0).max(200).default(0),
+    enable: yup.boolean().typeError(t("yupSomethingWrongMsg")).default(true),
+  });
+}
+
 
 export const ChangePasswordSchema = (t) => {
   return yup.object().shape({

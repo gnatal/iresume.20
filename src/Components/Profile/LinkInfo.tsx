@@ -1,36 +1,37 @@
 import React from "react";
 import { ActivityIndicator, Platform, Text, View } from "react-native";
-import { IAcademicProps } from "../../utils/DataTypes";
+import { useDispatch, useSelector } from "react-redux";
+import i18n from "../../i18n/i18n";
+import { RootState } from "../../store";
+import { deleteLink } from "../../store/linkInfoReducer";
+import { ILinkProps } from "../../utils/DataTypes";
 import {
   AddInfoButton,
   CancelEditButton,
   EditButton,
 } from "../Basics/EditButtons";
 import { FadePanel } from "../Basics/FadePanel";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteAcademic } from "../../store/academicInfoReducer";
-import { RootState } from "../../store";
-import i18n from "../../i18n/i18n";
+import { DropdownIcons } from "../../utils/LinkIcons";
 
 const Box = ({ className = "", ...props }) => (
   <View
-    className={`flex justify-center p-2 border-b-2 border-[#BDBDBD] bg-[#F5F5F5] ${className}`}
+    className={`flex flex-row items-center justify-center p-2 border-b-2 border-[#BDBDBD] bg-[#F5F5F5] ${className}`}
     {...props}
   />
 );
 const TextFields = ({ className = "", ...props }) => (
-  <Text className={`text-[#9E9E9E] text-justify ${className}`} {...props} />
+  <Text className={`text-[#a1a1a1] text-left ${className}`} {...props} />
 );
 
-const AcademicInfo: React.FC<IAcademicProps> = ({
-  AcademicInfoArray,
+const LinkInfo: React.FC<ILinkProps> = ({
+  LinkInfoArray,
   Edit,
   navigation,
 }) => {
   const infoToRender = [];
   const lastItemClassName = "border-b-0";
   const dispatch = useDispatch<any>();
-  const { isLoading } = useSelector((state: RootState) => state.academicinfo);
+  const { isLoading } = useSelector((state: RootState) => state.linkinfo);
   const appLanguage = useSelector((state: any) => state.appLanguage.value);
   i18n.changeLanguage(appLanguage);
   const t = i18n.t;
@@ -42,34 +43,34 @@ const AcademicInfo: React.FC<IAcademicProps> = ({
       </Box>
     );
   } else {
-    if (AcademicInfoArray != undefined && AcademicInfoArray.length > 0) {
-      AcademicInfoArray.forEach((value, index, array) => {
+    if (LinkInfoArray != undefined && LinkInfoArray.length > 0) {
+      LinkInfoArray.forEach((value, index, array) => {
         infoToRender.push(
           <View key={index}>
             <Box className={index < array.length - 1 ? "" : lastItemClassName}>
-              <TextFields className="text-xl">{value.graduation}</TextFields>
-              <TextFields>{value.institution}</TextFields>
-              <TextFields>
-                {value.startDateMonth + "/" + value.startDateYear}-
-                {value.endDateMonth != 0
-                  ? value.endDateMonth + "/" + value.endDateYear
-                  : "Sem previsão"}
+              <TextFields className="basis-3/12 text-xl">
+                {value.label}
               </TextFields>
-              <TextFields>{value.description}</TextFields>
+              <TextFields className="basis-6/12 text-center">
+                {value.url}
+              </TextFields>
+              <TextFields className="basis-3/12 text-center">
+                {DropdownIcons("", value.icon, false)}
+              </TextFields>
             </Box>
             <FadePanel visible={Edit}>
               <EditButton
                 disabled={!Edit}
-                className="absolute bottom-[35] right-[-20]"
+                className="absolute bottom-[5] right-[-25]"
                 onPress={() => {
-                  navigation.navigate("EditAcademicInfo", { infoID: value.id });
+                  navigation.navigate("EditLinkInfo", { infoID: value.id });
                 }}
               />
               <CancelEditButton
                 disabled={!Edit}
-                className="absolute bottom-[35] left-[-20]"
+                className="absolute bottom-[5] left-[-25]"
                 onPress={() => {
-                  dispatch(deleteAcademic(value.id));
+                  dispatch(deleteLink(value.id));
                 }}
               />
             </FadePanel>
@@ -80,7 +81,7 @@ const AcademicInfo: React.FC<IAcademicProps> = ({
       infoToRender.push(
         <Box key={0} className={lastItemClassName}>
           <TextFields className="text-xl text-center my-4">
-            {t("AddAcademicInfo")}
+            {t("AddLinkInfo")}
           </TextFields>
         </Box>
       );
@@ -94,7 +95,7 @@ const AcademicInfo: React.FC<IAcademicProps> = ({
     >
       <View className="w-full py-2 bg-[#0D47A1] rounded-t-xl">
         <TextFields className="text-xl text-white text-center">
-          {t("AcademicHeader")}
+          {t("LinkHeader")}
         </TextFields>
       </View>
       <View className="flex flex-row">
@@ -107,7 +108,7 @@ const AcademicInfo: React.FC<IAcademicProps> = ({
           disabled={!Edit}
           className="absolute bottom-[-20]"
           onPress={() => {
-            navigation.navigate("EditAcademicInfo");
+            navigation.navigate("EditLinkInfo");
           }}
         />
       </FadePanel>
@@ -115,4 +116,4 @@ const AcademicInfo: React.FC<IAcademicProps> = ({
   );
 };
 
-export default AcademicInfo;
+export default LinkInfo;

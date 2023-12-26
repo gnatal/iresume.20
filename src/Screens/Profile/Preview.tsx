@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 import { updateProfile } from "../../store/profileInfoReducer";
 import SelectDropdown from "react-native-select-dropdown";
 import { showMessage } from "react-native-flash-message";
+import i18n from "../../i18n/i18n";
 
 export default function Preview({ navigation }: any) {
   const profileInfoRedux = useSelector((state: RootState) => state.profileinfo);
@@ -32,7 +33,12 @@ export default function Preview({ navigation }: any) {
   const languageInfoRedux = useSelector(
     (state: RootState) => state.languageinfo
   );
-  const skillInfoRedux = useSelector((state: RootState) => state.skillinfo);
+  const skillInfoRedux = useSelector(
+    (state: RootState) => state.skillinfo
+  );
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage);
+  const t = i18n.t;
 
   const [html, setHtml] = useState("");
   const [refreshing, setRefreshing] = useState(false);
@@ -117,7 +123,7 @@ export default function Preview({ navigation }: any) {
             setTemplate(index);
             generateHTMLPage(index);
           }}
-          defaultButtonText="Selecione um template"
+          defaultButtonText={t("SelectTemplate")}
           buttonStyle={{
             width: 400,
             backgroundColor: "#FFF",
@@ -134,14 +140,14 @@ export default function Preview({ navigation }: any) {
           className="w-40 bg-[#42A5F5] rounded-3xl h-8 items-center justify-center"
           onPress={downloadAsPdf}
         >
-          <Text className="text-white">Download PDF</Text>
+          <Text className="text-white">{t("DownloadPDF")}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           disabled={false}
           className="w-40 bg-[#42A5F5] rounded-3xl h-8 items-center justify-center"
           onPress={() => { Clipboard.setStringAsync(profileInfoRedux.pdfLink) }}
         >
-          <Text className="text-white">Copiar link</Text>
+          <Text className="text-white">{t("CopyLink")}</Text>
         </TouchableOpacity>
       </View>
       <View

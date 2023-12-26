@@ -11,6 +11,8 @@
     "yupLanguageMsg": "Selecione uma linguagem",
     "yupProficiencyMsg": "Adicione uma prociciência",
     "yupSkillMsg": "Selecione uma habilidade",
+    "yupLinkLabelMsg": "Adicione um nome ao link",
+    "yupLinkUrlMsg": "Adicione uma URL ao link",
     "yupSomethingWrongMsg": "Algo deu errado",
     "yupOldPasswordRequiredMsg": "Informe sua senha antiga",
     "yupNewPasswordRequiredMsg": "Informe sua nova senha",
@@ -72,6 +74,16 @@
     "nameRequired": "Nome é obrigatório",
     "phoneRequired": "Telefone é obrigatório",
 
+    "__PersonalInfo__": "__PersonalInfo__",
+
+    "PersonalHeader": "Informações Pessoais",
+    "EditPersonalInfo": "Editar suas informações pessoais",
+
+    "DownloadPDF": "Baixar PDF",
+    "SelectTemplate": "Selecionar um modelo",
+    "CopyLink": "Copiar link",
+    "ResumeNotFound": "Você ainda não tem um currículo, selecione um modelo!",
+
     "__AcademicInfo__": "__AcademicInfo__",
 
     "AcademicHeader": "Experiência Acadêmica",
@@ -118,10 +130,22 @@
     "SkillHeader": "Habilidades",
     "AddSkillInfo": "Adicione uma habilidade",
 
+    "__LinkInfo__": "__LinkInfo__",
+    "LinkHeader": "Links",
+    "AddLinkInfo": "Adicionar um link",
+
     "__EditSkillInfo__": "__EditSkillInfo__",
     "EditSkillInfo.title": "Habilidade",
     "EditSkillInfo.placeholder": "Habilidade",
     "EditSkillInfo.error": "Adicione uma habilidade",
+
+    "__EditLinkInfo__": "__EditLinkInfo__",
+    "EditLinkInfo.title": "Link",
+    "EditLinkInfo.placeholder_label": "Nome do link",
+    "EditLinkInfo.placeholder_link": "URL do link",
+    "EditLinkInfo.placeholder_icon": "Selecione um icone",
+    "EditLinkInfo.placeholder_enable": "Visível no resume",
+    "EditLinkInfo.error": "Adicione um link válido",
 
     "__MenuScreen__": "__MenuScreen__",
     "menu.policy": "Política de privacidade",

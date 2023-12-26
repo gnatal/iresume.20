@@ -3,6 +3,8 @@ import { Text, View, Image, Platform } from "react-native";
 import { IProfileInfoProps } from "../../utils/DataTypes";
 import { EditButton } from "../Basics/EditButtons";
 import { FadePanel } from "../Basics/FadePanel";
+import { useSelector } from "react-redux";
+import i18n from "../../i18n/i18n";
 
 const Box = ({ className = "", ...props }) => (
   <View
@@ -22,6 +24,9 @@ const ProfileInfo: React.FC<IProfileInfoProps> = ({
   Edit,
   navigation,
 }) => {
+  const appLanguage = useSelector((state: any) => state.appLanguage.value);
+  i18n.changeLanguage(appLanguage);
+  const t = i18n.t;
   return (
     <View
       className={`w-4/5 mt-10 items-center rounded-xl ${Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
@@ -30,7 +35,7 @@ const ProfileInfo: React.FC<IProfileInfoProps> = ({
       {/* Inside BOX */}
       <View className="w-[100%] py-2 bg-[#0D47A1] rounded-t-xl">
         <TextFields className="w-full text-xl text-white text-center">
-          Informações Pessoais
+          {t("PersonalHeader")}
         </TextFields>
       </View>
       <View className="flex flex-row mx-2">

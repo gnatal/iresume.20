@@ -137,7 +137,7 @@ function EditSkillInfo({ route, navigation }: any) {
               {errors?.skill?.message}{" "}
             </Text>
           )}
-          {/* Institution */}
+          {/* Level */}
           <View
             className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
               Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
@@ -182,7 +182,7 @@ function EditSkillInfo({ route, navigation }: any) {
             } shadow-black mt-8 mb-0`}
             onPress={handleSubmit(debouncedEditSkill)}
           >
-            <Text className="text-white">Salvar</Text>
+            <Text className="text-white">{t("Salvar")}</Text>
           </TouchableOpacity>
           {errorMessage != "" && (
             <Text className="text-[#c3a040] mb-2 mt-2">*{errorMessage}</Text>
@@ -194,7 +194,7 @@ function EditSkillInfo({ route, navigation }: any) {
             } shadow-black mt-2 mb-0`}
             onPress={debouncedCancel}
           >
-            <Text className="text-white">Cancelar</Text>
+            <Text className="text-white">{t("Cancelar")}</Text>
           </TouchableOpacity>
         </View>
       </View>
