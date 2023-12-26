@@ -11,6 +11,8 @@
     "yupLanguageMsg": "Seleccione un lenguaje",
     "yupProficiencyMsg": "Ingrese un Dominio",
     "yupSkillMsg": "Seleccione una habilidad",
+    "yupLinkLabelMsg": "Agregue un nombre al enlace",
+    "yupLinkUrlMsg": "Agregue una URL al enlace",
     "yupSomethingWrongMsg": "Algo ha salido mal",
     "yupOldPasswordRequiredMsg": "Ingrese su contrasenya anterior",
     "yupNewPasswordRequiredMsg": "Ingrese su nueva contrasenya",
@@ -136,6 +138,14 @@
     "EditSkillInfo.title": "Habilidad",
     "EditSkillInfo.placeholder": "Habilidad",
     "EditSkillInfo.error": "Ingrese una habilidad",
+
+    "__EditLinkInfo__": "__EditLinkInfo__",
+    "EditLinkInfo.title": "Enlace",
+    "EditLinkInfo.placeholder_label": "Nombre del enlace",
+    "EditLinkInfo.placeholder_link": "URL del enlace",
+    "EditLinkInfo.placeholder_icon": "Seleccione un icono",
+    "EditLinkInfo.placeholder_enable": "Visible en el resumen",
+    "EditLinkInfo.error": "Agrega un enlace válido",
 
     "__MenuScreen__": "__MenuScreen__",
     "menu.policy": "Politica de privacidad",

@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import Slider from "@react-native-community/slider";
+import Checkbox from "expo-checkbox";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
@@ -10,6 +10,7 @@ import {
   View
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import SelectDropdown from "react-native-select-dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { useDebouncedCallback } from "use-debounce";
 import { LinkInfoSchema } from "../../../Components/Yup/Schemas";
@@ -17,8 +18,6 @@ import i18n from "../../../i18n/i18n";
 import { RootState } from "../../../store";
 import { createLink, updateLink } from "../../../store/linkInfoReducer";
 import { ILinkInfo } from "../../../utils/DataTypes";
-import SelectDropdown from "react-native-select-dropdown";
-import Checkbox from "expo-checkbox";
 
 
 function EditLinkInfo({ route, navigation }: any) {
@@ -67,6 +66,9 @@ function EditLinkInfo({ route, navigation }: any) {
       info.url = EditedInfo?.url;
       info.icon = EditedInfo?.icon;
       info.enable = EditedInfo?.enable;
+      console.log(info);
+      return;
+
 
       if (info.id == -1) {
         dispatch(createLink(info));
@@ -105,13 +107,14 @@ function EditLinkInfo({ route, navigation }: any) {
         <View className="w-4/5 pb-10 mb-10 mt-10 border-2 items-center border-solid shadow-xl rounded-xl bg-[#F5F5F5] border-[#9FC0C7] shadow-black">
           <View className="w-80 rounded-3xl h-14 flex items-center justify-center my-2">
             <Text className="text-black text-lg">
-              {t("EditSkillInfo.title")}
+              {t("EditLinkInfo.title")}
             </Text>
           </View>
           {/* Label */}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black px-2 justify-center h-24 mb-2 mt-0`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black px-2 justify-center h-12 mb-2 mt-2`}
           >
             <Controller
               control={control}
@@ -123,7 +126,7 @@ function EditLinkInfo({ route, navigation }: any) {
                 <View className="items-center justify-center">
                   <TextInput
                     className="h-10 text-black text-center"
-                    placeholder={t("EditSkillInfo.placeholder")}
+                    placeholder={t("EditLinkInfo.placeholder_label")}
                     placeholderTextColor="#9E9E9E"
                     defaultValue={info?.label}
                     onChangeText={onChange}
@@ -153,7 +156,7 @@ function EditLinkInfo({ route, navigation }: any) {
                 <View className="items-center justify-center">
                   <TextInput
                     className="h-10 text-black text-center"
-                    placeholder={t("EditSkillInfo.placeholder")}
+                    placeholder={t("EditLinkInfo.placeholder_link")}
                     placeholderTextColor="#9E9E9E"
                     defaultValue={info?.url}
                     onChangeText={onChange}
@@ -170,8 +173,9 @@ function EditLinkInfo({ route, navigation }: any) {
           )}
           {/* Icon */}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-              } shadow-black px-2 justify-center h-24 mb-2 mt-0`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+            } shadow-black px-2 justify-center h-14 mb-0 mt-0`}
           >
             <Controller
               control={control}
@@ -186,10 +190,10 @@ function EditLinkInfo({ route, navigation }: any) {
                     onSelect={(selectedItem, index) => {
                       onChange(index);
                     }}
-                    defaultButtonText={t("SelectTemplate")}
+                    defaultButtonText={t("EditLinkInfo.placeholder_icon")}
                     buttonStyle={{
-                      width: 100,
-                      backgroundColor: "#FFF",
+                      width: "100%",
+                      backgroundColor: "#F0F0F0",
                       borderRadius: 20,
                     }}
                     dropdownStyle={{
@@ -222,7 +226,7 @@ function EditLinkInfo({ route, navigation }: any) {
                 />
               )}
             />
-            <Text>{t("EditAcademicInfo.stillWorkHere")}</Text>
+            <Text>{t("EditLinkInfo.placeholder_enable")}</Text>
           </View>
           {/* Submit Button */}
           <TouchableOpacity
@@ -230,7 +234,7 @@ function EditLinkInfo({ route, navigation }: any) {
               } shadow-black mt-8 mb-0`}
             onPress={handleSubmit(debouncedEditLink)}
           >
-            <Text className="text-white">Salvar</Text>
+            <Text className="text-white">{t("Salvar")}</Text>
           </TouchableOpacity>
           {errorMessage != "" && (
             <Text className="text-[#c3a040] mb-2 mt-2">*{errorMessage}</Text>
@@ -241,7 +245,7 @@ function EditLinkInfo({ route, navigation }: any) {
               } shadow-black mt-2 mb-0`}
             onPress={debouncedCancel}
           >
-            <Text className="text-white">Cancelar</Text>
+            <Text className="text-white">{t("Cancelar")}</Text>
           </TouchableOpacity>
         </View>
       </View>

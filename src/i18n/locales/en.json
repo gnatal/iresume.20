@@ -11,6 +11,8 @@
     "yupLanguageMsg": "Add a language",
     "yupProficiencyMsg": "Add a proficiency",
     "yupSkillMsg": "Add a skill",
+    "yupLinkLabelMsg": "Add a link label",
+    "yupLinkUrlMsg": "Add a link url",
     "yupSomethingWrongMsg": "Something went wrong",
     "yupOldPasswordRequiredMsg": "Enter your old password",
     "yupNewPasswordRequiredMsg": "Enter your new password",
@@ -136,6 +138,14 @@
     "EditSkillInfo.title": "Skill",
     "EditSkillInfo.placeholder": "Skill",
     "EditSkillInfo.error": "Add a skill",
+
+    "__EditLinkInfo__": "__EditLinkInfo__",
+    "EditLinkInfo.title": "Link",
+    "EditLinkInfo.placeholder_label": "Link label",
+    "EditLinkInfo.placeholder_link": "Link url",
+    "EditLinkInfo.placeholder_icon": "Select an icon",
+    "EditLinkInfo.placeholder_enable": "Visible on the resume",
+    "EditLinkInfo.error": "Add a valid link",
 
     "__MenuScreen__": "__MenuScreen__",
     "menu.policy": "Privacy's policy",
