@@ -62,7 +62,7 @@ const LinkInfo: React.FC<ILinkProps> = ({
                 disabled={!Edit}
                 className="absolute bottom-[5] right-[-25]"
                 onPress={() => {
-                  navigation.navigate("EditSkillInfo", { infoID: value.id });
+                  navigation.navigate("EditLinkInfo", { infoID: value.id });
                 }}
               />
               <CancelEditButton
@@ -107,7 +107,7 @@ const LinkInfo: React.FC<ILinkProps> = ({
           disabled={!Edit}
           className="absolute bottom-[-20]"
           onPress={() => {
-            navigation.navigate("EditSkillInfo");
+            navigation.navigate("EditLinkInfo");
           }}
         />
       </FadePanel>

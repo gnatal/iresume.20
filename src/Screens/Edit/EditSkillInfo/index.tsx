@@ -137,7 +137,7 @@ function EditSkillInfo({ route, navigation }: any) {
               {errors?.skill?.message}{" "}
             </Text>
           )}
-          {/* Institution */}
+          {/* Level */}
           <View
             className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
               Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"

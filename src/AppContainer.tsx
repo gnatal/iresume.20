@@ -13,6 +13,7 @@ import DeleteAccount from "./Screens/Menu/DeleteAccount";
 import ChangePassword from "./Screens/Menu/ChangePassword";
 import FlashMessage from "react-native-flash-message";
 import Policy from "./Screens/Menu/Policy";
+import EditLinkInfo from "./Screens/Edit/EditLinkInfo";
 // import * as Updates from 'expo-updates';
 
 // const prefix = Linking.createURL("/");
@@ -58,6 +59,7 @@ const AppStackNavigator = () => {
         component={EditProfessionalInfo}
       />
       <AppStack.Screen name="EditSkillInfo" component={EditSkillInfo} />
+      <AppStack.Screen name="EditLinkInfo" component={EditLinkInfo} />
       <AppStack.Screen name="ChangePassword" component={ChangePassword} />
       <AppStack.Screen name="DeleteAccount" component={DeleteAccount} />
       <AppStack.Screen name="Policy" component={Policy} />
