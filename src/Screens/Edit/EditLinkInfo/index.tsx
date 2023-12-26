@@ -18,6 +18,7 @@ import i18n from "../../../i18n/i18n";
 import { RootState } from "../../../store";
 import { createLink, updateLink } from "../../../store/linkInfoReducer";
 import { ILinkInfo } from "../../../utils/DataTypes";
+import { DropdownIcons, linkIcons } from "../../../utils/LinkIcons";
 
 
 function EditLinkInfo({ route, navigation }: any) {
@@ -36,7 +37,7 @@ function EditLinkInfo({ route, navigation }: any) {
       if (value.id == infoID) info = { ...value };
     });
   // If info undefined, set Default empty params
-  if (!info) info = { id: -1, label: "", url: "", enable: true, icon: 0 };
+  if (!info) info = { id: -1, label: "", url: "", enable: true, icon: -1 };
 
   const {
     control,
@@ -66,9 +67,6 @@ function EditLinkInfo({ route, navigation }: any) {
       info.url = EditedInfo?.url;
       info.icon = EditedInfo?.icon;
       info.enable = EditedInfo?.enable;
-      console.log(info);
-      return;
-
 
       if (info.id == -1) {
         dispatch(createLink(info));
@@ -112,9 +110,8 @@ function EditLinkInfo({ route, navigation }: any) {
           </View>
           {/* Label */}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
-              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-            } shadow-black px-2 justify-center h-12 mb-2 mt-2`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+              } shadow-black px-2 justify-center h-12 mb-2 mt-2`}
           >
             <Controller
               control={control}
@@ -173,9 +170,8 @@ function EditLinkInfo({ route, navigation }: any) {
           )}
           {/* Icon */}
           <View
-            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${
-              Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
-            } shadow-black px-2 justify-center h-14 mb-0 mt-0`}
+            className={`w-4/5 text-black bg-[#F0F0F0] rounded-lg ${Platform.OS === "ios" ? "shadow-sm" : "shadow-lg"
+              } shadow-black px-2 justify-center h-14 mb-0 mt-0`}
           >
             <Controller
               control={control}
@@ -186,10 +182,12 @@ function EditLinkInfo({ route, navigation }: any) {
               render={({ field: { onChange, onBlur, value } }) => (
                 <View className="items-center justify-center">
                   <SelectDropdown
-                    data={["Icon 0", "Icon 1", "Icon 2"]}
+                    data={[0, 1, 2, 3, 4, 5]}
                     onSelect={(selectedItem, index) => {
                       onChange(index);
                     }}
+                    renderCustomizedRowChild={DropdownIcons}
+                    renderCustomizedButtonChild={value > -1 ? DropdownIcons : undefined}
                     defaultButtonText={t("EditLinkInfo.placeholder_icon")}
                     buttonStyle={{
                       width: "100%",
