@@ -1,5 +1,9 @@
 import React from "react";
 import { ActivityIndicator, Platform, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import i18n from "../../i18n/i18n";
+import { RootState } from "../../store";
+import { deleteLink } from "../../store/linkInfoReducer";
 import { ILinkProps } from "../../utils/DataTypes";
 import {
   AddInfoButton,
@@ -7,10 +11,7 @@ import {
   EditButton,
 } from "../Basics/EditButtons";
 import { FadePanel } from "../Basics/FadePanel";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteSkill } from "../../store/skillInfoReducer";
-import { RootState } from "../../store";
-import i18n from "../../i18n/i18n";
+import { DropdownIcons } from "../../utils/LinkIcons";
 
 const Box = ({ className = "", ...props }) => (
   <View
@@ -47,15 +48,15 @@ const LinkInfo: React.FC<ILinkProps> = ({
         infoToRender.push(
           <View key={index}>
             <Box className={index < array.length - 1 ? "" : lastItemClassName}>
-              <TextFields className="basis-8/12 text-xl">
+              <TextFields className="basis-3/12 text-xl">
                 {value.label}
               </TextFields>
-              <TextFields className="basis-2/12 text-center">
-                {value.url}%
+              <TextFields className="basis-6/12 text-center">
+                {value.url}
               </TextFields>
-              <View className="basis-2/12 items-center">
-                |{value.icon}|
-              </View>
+              <TextFields className="basis-3/12 text-center">
+                {DropdownIcons("", value.icon, false)}
+              </TextFields>
             </Box>
             <FadePanel visible={Edit}>
               <EditButton
@@ -69,7 +70,7 @@ const LinkInfo: React.FC<ILinkProps> = ({
                 disabled={!Edit}
                 className="absolute bottom-[5] left-[-25]"
                 onPress={() => {
-                  dispatch(deleteSkill(value.id));
+                  dispatch(deleteLink(value.id));
                 }}
               />
             </FadePanel>

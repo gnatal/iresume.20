@@ -16,7 +16,9 @@ function HomeScreen({ navigation }: any) {
 
 
   const [dispatch] = useLoadUserData();
-  const profileInfoRedux = useSelector((state: RootState) => state.profileinfo);
+  const profileInfoRedux = useSelector(
+    (state: RootState) => state.profileinfo
+  );
   const academicInfoRedux = useSelector(
     (state: RootState) => state.academicinfo
   );
@@ -26,7 +28,12 @@ function HomeScreen({ navigation }: any) {
   const languageInfoRedux = useSelector(
     (state: RootState) => state.languageinfo
   );
-  const skillInfoRedux = useSelector((state: RootState) => state.skillinfo);
+  const skillInfoRedux = useSelector(
+    (state: RootState) => state.skillinfo
+  );
+  const linkInfoRedux = useSelector(
+    (state: RootState) => state.linkinfo
+  );
   const [showEdit, setEdit] = useState<Boolean>(false);
 
   const handleToggleEditButton = () => {
@@ -63,7 +70,7 @@ function HomeScreen({ navigation }: any) {
             navigation={navigation}
           />
           <LinkInfo
-            LinkInfoArray={[]}
+            LinkInfoArray={linkInfoRedux.lInfoArray}
             Edit={showEdit}
             navigation={navigation}
           />

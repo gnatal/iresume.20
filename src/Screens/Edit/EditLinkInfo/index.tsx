@@ -22,7 +22,7 @@ import { DropdownIcons, linkIcons } from "../../../utils/LinkIcons";
 
 
 function EditLinkInfo({ route, navigation }: any) {
-  const linkInfoRedux = useSelector((state: RootState) => state.linkinfo.sInfoArray);
+  const linkInfoRedux = useSelector((state: RootState) => state.linkinfo.lInfoArray);
   const dispatch = useDispatch<any>();
   const [errorMessage, setError] = useState("");
   const appLanguage = useSelector((state: any) => state.appLanguage.value);
@@ -189,6 +189,7 @@ function EditLinkInfo({ route, navigation }: any) {
                     renderCustomizedRowChild={DropdownIcons}
                     renderCustomizedButtonChild={value > -1 ? DropdownIcons : undefined}
                     defaultButtonText={t("EditLinkInfo.placeholder_icon")}
+                    defaultValue={value}
                     buttonStyle={{
                       width: "100%",
                       backgroundColor: "#F0F0F0",

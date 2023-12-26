@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ILinkInfo, ISkillInfo } from '../utils/DataTypes';
+import { ILinkInfo } from '../utils/DataTypes';
 import { Axios_API } from '../Api';
 // import { showMessage } from 'react-native-flash-message';
 
@@ -29,7 +29,7 @@ export const deleteLink = createAsyncThunk("deleteLink", async (data: Number) =>
 // Slice to handle resume information about Link Experiences
 const LinkInfoSlice = createSlice({
   name: 'Linkinfo',
-  initialState: { sInfoArray: [], isLoading: false },
+  initialState: { lInfoArray: [], isLoading: false },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getLink.pending, (state, action) => {
@@ -41,11 +41,11 @@ const LinkInfoSlice = createSlice({
     });
     builder.addCase(getLink.fulfilled, (state, action) => {
       state.isLoading = false;
-      const skillInfos = [...action.payload.skillInfos];
-      const Values = skillInfos.map((tempstate) => {
+      const linkInfos = [...action.payload.linkInfos];
+      const Values = linkInfos.map((tempstate) => {
         return { ...tempstate };
       });
-      state.sInfoArray = [...Values];
+      state.lInfoArray = [...Values];
       return state;
     });
     builder.addCase(createLink.pending, (state, action) => {
@@ -58,7 +58,7 @@ const LinkInfoSlice = createSlice({
     builder.addCase(createLink.fulfilled, (state, action) => {
     //   showMessage({ message: "Informações enviadas", type: "success", duration: 1000 });
       state.isLoading = false;
-      state.sInfoArray = [...state.sInfoArray, { ...action.payload }];
+      state.lInfoArray = [...state.lInfoArray, { ...action.payload }];
       return state;
     });
     builder.addCase(updateLink.pending, (state, action) => {
@@ -72,11 +72,11 @@ const LinkInfoSlice = createSlice({
     //   showMessage({ message: "Informações atualizadas", type: "success", duration: 1000 });
       state.isLoading = false;
       const EditedInfo = { ...action.payload } as ILinkInfo;
-      const index = state.sInfoArray.findIndex((value) => value.id === EditedInfo.id);
+      const index = state.lInfoArray.findIndex((value) => value.id === EditedInfo.id);
       if (index === -1)
         return;
-      state.sInfoArray[index] = { ...EditedInfo };
-      state.sInfoArray = [...state.sInfoArray];
+      state.lInfoArray[index] = { ...EditedInfo };
+      state.lInfoArray = [...state.lInfoArray];
       return state;
     });
     builder.addCase(deleteLink.pending, (state, action) => {
@@ -92,10 +92,10 @@ const LinkInfoSlice = createSlice({
       const result = action.payload;
       if (result?.message == "Success") {
         var indexToDelete: number;
-        state.sInfoArray.forEach((value, index) => { if (value.id == result?.id) { indexToDelete = index; return; } });
+        state.lInfoArray.forEach((value, index) => { if (value.id == result?.id) { indexToDelete = index; return; } });
         if (indexToDelete > -1) {
-          state.sInfoArray.splice(indexToDelete, 1);
-          state.sInfoArray = [...state.sInfoArray];
+          state.lInfoArray.splice(indexToDelete, 1);
+          state.lInfoArray = [...state.lInfoArray];
         } else {
           console.error("Tried to remove an LinkInfo, but id not found");
         };

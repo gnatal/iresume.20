@@ -5,6 +5,7 @@ import { getProfessional } from "../store/professionalInfoReducer";
 import { getAcademic } from "../store/academicInfoReducer";
 import { getLanguage } from "../store/languageInfoReducer";
 import { getSkill } from "../store/skillInfoReducer";
+import { getLink } from "../store/linkInfoReducer";
 
 export default function useLoadUserData() {
   const dispatch = useDispatch<any>();
@@ -15,6 +16,7 @@ export default function useLoadUserData() {
       dispatch(getAcademic());
       dispatch(getLanguage());
       dispatch(getSkill());
+      dispatch(getLink());
     } catch (error) {
       console.log("handleRequestInfo error", error);
     }
